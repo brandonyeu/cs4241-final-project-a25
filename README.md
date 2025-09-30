@@ -60,3 +60,48 @@ The video described above is also due on Canvas at this time.
 **Can I use XYZ framework?** 
 
 You can use any web-based frameworks or tools available, but for your server programming you need to use Node.js. Your client-side scripting language should be either JavaScript or TypeScript. Note that the staff may not be able to assist with TypeScript questions.
+
+------------------------------------------------------------------------------------
+
+# Studi
+## Team Members (Group 5):
+- Arianna Xie
+- Amanda Chavarria Pleitez
+- Brandon Yeu
+- Charles Anton Sibal
+
+## Project Description:
+This is a study buddy matching app that matches students looking for a study buddy based on classes, subjects, schedules, study habits, and other preferences. When users create an account, they record some static info (contact info, personal info, etc.). When they go to a spot “looking for a study buddy” they can fill out a form that records their course info, schedule, and study preferences. In the backend, there will be logic to find weighted euclidean distance to determine good fits for the user. The application then shows the top 3 best matches and their contact information for the student. Some ideas for the preference form are listed below:
+
+### Basic Info:
+- Name / username
+- Email
+- Major / year
+- Language
+
+### Study Habits / Preferences:
+#### Personality:
+- Personality: extroverted/introverted/flexible
+
+#### Study Goals
+- Course Priority: just want to pass the class / get highest grades
+- Assignment Type: Exam / Project / Homework
+
+#### Study Environment
+- Communication style: likes to yap / strictly locks in on academics / either is fine
+- Noise level: silent/background music/chatter okay(talking)
+- Preferred location: online(zoom/discord) / on campus
+
+#### Study Rhythm
+- Preferred study time: Morning / afternoon / night
+- Study pace: fast (cover lost quickly) / steady / slow & detailed
+- Break style: short frequent breaks / long breaks / few breaks
+
+## Key Technologies:
+- React
+- MongoDB
+- Node.js
+- Bootstrap
+- Shadcn
+- JavaScript
+- Passport
