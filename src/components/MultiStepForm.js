@@ -88,11 +88,19 @@ export default function MultiStepForm() {
             >
                 {/* display cancel button only if on first step */}
                 {activeStep != 0 ? (
-                    <Button variant="contained" onClick={handleBack}>
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        onClick={handleBack}
+                    >
                         Back
                     </Button>
                 ) : (
-                    <Button variant="contained" onClick={handleCancel}>
+                    <Button
+                        variant="contained"
+                        color="error"
+                        onClick={handleCancel}
+                    >
                         Cancel
                     </Button>
                 )}
@@ -103,7 +111,11 @@ export default function MultiStepForm() {
                         Next
                     </Button>
                 ) : (
-                    <Button variant="contained" onClick={handleSubmit}>
+                    <Button
+                        variant="contained"
+                        color="success"
+                        onClick={handleSubmit}
+                    >
                         Submit
                     </Button>
                 )}

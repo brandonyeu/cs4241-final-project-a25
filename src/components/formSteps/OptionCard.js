@@ -5,7 +5,7 @@ export default function OptionCard({ label, icon, value, selected, onSelect }) {
         <Card
             sx={{
                 display: "flex",
-                border: selected ? "2px solid #1976d2" : "1px solid #ccc",
+                border: selected ? "2px solid #2fbbd4" : "1px solid #ccc",
                 borderRadius: 2,
                 textAlign: "center",
                 justifyContent: "center",

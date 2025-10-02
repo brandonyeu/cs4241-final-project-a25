@@ -7,7 +7,8 @@ export default function Step2({ formData, onChange }) {
             sx={{
                 display: "flex",
                 justifyContent: "center",
-                mt: 2
+                mt: 2,
+                overflow: "visible",
             }}
         >
             <FormControl sx={{ width: "75%" }}>
@@ -22,6 +23,7 @@ export default function Step2({ formData, onChange }) {
                     <MenuItem value="">-- Select a course --</MenuItem>
                     <MenuItem value="cs1101">CS 1101</MenuItem>
                     <MenuItem value="cs2102">CS 2102</MenuItem>
+                    <MenuItem value="cs3733">CS 3733</MenuItem>
                 </Select>
             </FormControl>
         </Box>

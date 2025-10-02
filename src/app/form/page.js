@@ -9,19 +9,17 @@ export default function Form() {
             sx={{
                 display: "flex",
                 justifyContent: "center",
-                mt: 4,
-                mb: 4,
+                my: 4,
+                px: 2,
             }}
         >
             <Box
                 sx={{
-                    width: 800,
+                    width: { xs: "100%", sm: 800 },
                     backgroundColor: "#E8E8E8",
                     borderRadius: "7px",
                     color: "black",
                     p: 4,
-                    ml: 4,
-                    mr: 4,
                 }}
             >
                 <MultiStepForm />
