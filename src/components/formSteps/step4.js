@@ -15,16 +15,27 @@ export default function Step4({ formData, onChange }) {
         onChange({ target: { name, value } });
 
     return (
-        <Box>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                mt: 2,
+                alignItems: "center",
+            }}
+        >
+            <Typography variant="h5" gutterBottom sx={{ mb: 2 }}>
+                Study Goals
+            </Typography>
             {/* Priority */}
-            <Typography variant="h6" gutterBottom>
-                Study Priority
+            <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
+                How much effort do you want to put into this course?
             </Typography>
             <Grid container spacing={2} sx={{ mb: 4 }}>
                 <Grid item xs={6}>
                     <OptionCard
                         label="Highest Grades"
-                        icon={<School />}
+                        icon={<School fontSize="large" />}
                         value="highest_grades"
                         selected={formData.priority === "highest_grades"}
                         onSelect={(val) => handleSelect("priority", val)}
@@ -33,7 +44,7 @@ export default function Step4({ formData, onChange }) {
                 <Grid item xs={6}>
                     <OptionCard
                         label="Just Pass"
-                        icon={<TagFaces />}
+                        icon={<TagFaces fontSize="large" />}
                         value="just_pass"
                         selected={formData.priority === "just_pass"}
                         onSelect={(val) => handleSelect("priority", val)}
@@ -42,14 +53,14 @@ export default function Step4({ formData, onChange }) {
             </Grid>
 
             {/* Assignment Type */}
-            <Typography variant="h6" gutterBottom>
-                Assignment Type
+            <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
+                What assignment do you need to complete for this class?
             </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
                     <OptionCard
                         label="Exam"
-                        icon={<Quiz />}
+                        icon={<Quiz fontSize="large" />}
                         value="exam"
                         selected={formData.assignment === "exam"}
                         onSelect={(val) => handleSelect("assignment", val)}
@@ -58,7 +69,7 @@ export default function Step4({ formData, onChange }) {
                 <Grid item xs={4}>
                     <OptionCard
                         label="Project"
-                        icon={<AccountTree />}
+                        icon={<AccountTree fontSize="large" />}
                         value="project"
                         selected={formData.assignment === "project"}
                         onSelect={(val) => handleSelect("assignment", val)}
@@ -67,7 +78,7 @@ export default function Step4({ formData, onChange }) {
                 <Grid item xs={4}>
                     <OptionCard
                         label="Homework"
-                        icon={<Description />}
+                        icon={<Description fontSize="large" />}
                         value="hw"
                         selected={formData.assignment === "hw"}
                         onSelect={(val) => handleSelect("assignment", val)}

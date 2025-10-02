@@ -18,16 +18,27 @@ export default function Step6({ formData, onChange }) {
     const handleSelect = (name, value) => onChange({ target: { name, value } });
 
     return (
-        <Box>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                mt: 2,
+                alignItems: "center",
+            }}
+        >
+            <Typography variant="h5" gutterBottom sx={{ mb: 2 }}>
+                Study Rhythm
+            </Typography>
             {/* Time of Day */}
-            <Typography variant="h6" gutterBottom>
-                Time of Day
+            <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
+                What time of the day do you prefer to study?
             </Typography>
             <Grid container spacing={2} sx={{ mb: 4 }}>
                 <Grid item xs={4}>
                     <OptionCard
                         label="Morning"
-                        icon={<Sunny />}
+                        icon={<Sunny fontSize="large" />}
                         value="morning"
                         selected={formData.timeOfDay === "morning"}
                         onSelect={(val) => handleSelect("timeOfDay", val)}
@@ -36,7 +47,7 @@ export default function Step6({ formData, onChange }) {
                 <Grid item xs={4}>
                     <OptionCard
                         label="Afternoon"
-                        icon={<AccessTime />}
+                        icon={<AccessTime fontSize="large" />}
                         value="afternoon"
                         selected={formData.timeOfDay === "afternoon"}
                         onSelect={(val) => handleSelect("timeOfDay", val)}
@@ -45,7 +56,7 @@ export default function Step6({ formData, onChange }) {
                 <Grid item xs={4}>
                     <OptionCard
                         label="Night"
-                        icon={<NightsStay />}
+                        icon={<NightsStay fontSize="large" />}
                         value="night"
                         selected={formData.timeOfDay === "night"}
                         onSelect={(val) => handleSelect("timeOfDay", val)}
@@ -54,14 +65,14 @@ export default function Step6({ formData, onChange }) {
             </Grid>
 
             {/* Study Pace */}
-            <Typography variant="h6" gutterBottom>
-                Study Pace
+            <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
+                How fast do you plan to go over content?
             </Typography>
             <Grid container spacing={2} sx={{ mb: 4 }}>
                 <Grid item xs={4}>
                     <OptionCard
                         label="Fast"
-                        icon={<DirectionsRun />}
+                        icon={<DirectionsRun fontSize="large" />}
                         value="fast"
                         selected={formData.studyPace === "fast"}
                         onSelect={(val) => handleSelect("studyPace", val)}
@@ -70,7 +81,7 @@ export default function Step6({ formData, onChange }) {
                 <Grid item xs={4}>
                     <OptionCard
                         label="Steady"
-                        icon={<TransferWithinAStation />}
+                        icon={<TransferWithinAStation fontSize="large" />}
                         value="steady"
                         selected={formData.studyPace === "steady"}
                         onSelect={(val) => handleSelect("studyPace", val)}
@@ -79,7 +90,7 @@ export default function Step6({ formData, onChange }) {
                 <Grid item xs={4}>
                     <OptionCard
                         label="Slow"
-                        icon={<DirectionsWalk />}
+                        icon={<DirectionsWalk fontSize="large" />}
                         value="slow"
                         selected={formData.studyPace === "slow"}
                         onSelect={(val) => handleSelect("studyPace", val)}
@@ -88,14 +99,14 @@ export default function Step6({ formData, onChange }) {
             </Grid>
 
             {/* Break Style */}
-            <Typography variant="h6" gutterBottom>
-                Break Style
+            <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
+                Do you prefer short, long, or no breaks?
             </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
                     <OptionCard
                         label="Short and Frequent"
-                        icon={<EmojiFoodBeverage />}
+                        icon={<EmojiFoodBeverage fontSize="large" />}
                         value="short"
                         selected={formData.breakStyle === "short"}
                         onSelect={(val) => handleSelect("breakStyle", val)}
@@ -104,7 +115,7 @@ export default function Step6({ formData, onChange }) {
                 <Grid item xs={4}>
                     <OptionCard
                         label="Long and Few"
-                        icon={<Timelapse />}
+                        icon={<Timelapse fontSize="large" />}
                         value="long"
                         selected={formData.breakStyle === "long"}
                         onSelect={(val) => handleSelect("breakStyle", val)}
@@ -113,7 +124,7 @@ export default function Step6({ formData, onChange }) {
                 <Grid item xs={4}>
                     <OptionCard
                         label="No Breaks"
-                        icon={<TimerOff />}
+                        icon={<TimerOff fontSize="large" />}
                         value="none"
                         selected={formData.breakStyle === "none"}
                         onSelect={(val) => handleSelect("breakStyle", val)}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Stepper, Step, StepLabel, Button, Box } from "@mui/material";
 
 import Step1 from "./formSteps/step1";
@@ -36,6 +37,7 @@ export default function MultiStepForm() {
     const handleBack = () => setActiveStep((prev) => prev - 1);
     
     // go back to home page if cancel
+    const router = useRouter(); 
     const handleCancel = () => {
         router.push("/");
     };

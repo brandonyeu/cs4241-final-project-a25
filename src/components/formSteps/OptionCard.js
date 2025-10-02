@@ -4,9 +4,13 @@ export default function OptionCard({ label, icon, value, selected, onSelect }) {
     return (
         <Card
             sx={{
+                display: "flex",
                 border: selected ? "2px solid #1976d2" : "1px solid #ccc",
                 borderRadius: 2,
                 textAlign: "center",
+                justifyContent: "center",
+                width: 150,
+                height: 150,
             }}
         >
             <CardActionArea onClick={() => onSelect(value)} sx={{ p: 2 }}>
