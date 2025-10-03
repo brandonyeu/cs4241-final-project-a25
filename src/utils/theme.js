@@ -7,7 +7,7 @@ const theme = createTheme({
     },
     palette: {
         background: {
-            default: "black",
+            default: "white",
             paper: "white", // option card background
         },
     },
