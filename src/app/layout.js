@@ -1,6 +1,7 @@
 import { Lexend } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/navbar";
+import ClientThemeProvider from "@/utils/clientThemeProvider";
 
 const lexend = Lexend({
     subsets: ["latin"],
@@ -17,8 +18,10 @@ export default function RootLayout({ children }) {
   return (
       <html lang="en">
           <body className={lexend.className}>
-              <NavBar />
-              {children}
+            <ClientThemeProvider>
+                <NavBar />
+                {children}
+            </ClientThemeProvider>
           </body>
       </html>
   );
