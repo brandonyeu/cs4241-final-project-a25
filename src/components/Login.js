@@ -1,91 +1,114 @@
-// components/Login.js
-import React, { useState } from "react";
-import { Grid, Paper, Typography, TextField, Button, Box } from "@mui/material";
+"use client";
 
-export default function Login({ onLogin, onRedirectToSignup }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+import { useRouter } from "next/navigation";
+import { Button, TextField, Typography, Box } from "@mui/material";
+import { useEffect } from "react";
 
-  const handleLogin = () => {
-    // Mock logic for now
-    if (username === "test" && password === "1234") {
-      alert("Logged in!");
-      onLogin?.();
-    } else if (username === "test") {
-      alert("Wrong password, try again.");
-    } else {
-      alert("We couldn’t find an account with that info, let’s sign you up!");
-      onRedirectToSignup?.();
-    }
+export default function Login() {
+  const router = useRouter();
+
+  // Only run in browser after mount
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    // Optional cleanup if user navigates away
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  }, []);
+
+  const handleCreateAccountClick = () => {
+    router.push("/signup");
   };
 
   return (
-    <Grid container component="main" sx={{ height: "100vh" }}>
-      {/* Left column */}
-      <Grid
-        item
-        xs={12}
-        sm={6}
+    <Box display="flex" height="100vh" overflow="hidden">
+    {/* Left column */}
+    <Box
+        flex="1 1 50%"
         sx={{
-          backgroundColor: "#f5f5f5",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          p: 4,
+        background: "linear-gradient(to top, #92d0a1 0%, #ffffff 65%)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start", // left-align content inside
+        px: 8, // horizontal padding
+        mt: -42,
         }}
-      >
-        <Typography variant="h3" gutterBottom>
-          Welcome to Studi
-        </Typography>
-        <Typography variant="h6" color="text.secondary" align="center">
-          Meet people who have similar study needs, boosting productivity,
-          while forming new connections.
-        </Typography>
-      </Grid>
-
-      {/* Right column */}
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        component={Paper}
-        elevation={6}
-        square
-        sx={{ display: "flex", flexDirection: "column", justifyContent: "center", p: 6 }}
-      >
-        <Typography variant="h4" gutterBottom>
-          Log In
+    >
+        <Typography variant="h3" sx={{ fontWeight: "normal", mb: 2, lineHeight: 1.2 }}>
+        Welcome to
         </Typography>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <TextField
-            label="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <TextField
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button variant="contained" sx={{ bgcolor: "lightblue" }} onClick={handleLogin}>
-            Log In
-          </Button>
+        <Box
+        component="img"
+        src="/logotransparent.png"
+        alt="Studi logo"
+        sx={{ width: 300, height: 95, mb: 2 }}
+        />
 
-          <Typography align="center" variant="body1" sx={{ mt: 2 }}>
-            Don’t have an account?
-          </Typography>
-          <Button
-            variant="contained"
-            sx={{ bgcolor: "teal" }}
-            onClick={onRedirectToSignup}
-          >
-            Create An Account
-          </Button>
-        </Box>
-      </Grid>
-    </Grid>
+        <Typography variant="h5" sx={{ mt: 2, lineHeight: 1.3 }}>
+        Meet people who have similar study needs, boosting productivity, while
+        forming new connections.
+        </Typography>
+    </Box>
+
+    {/* Right column */}
+    <Box
+        flex="1 1 50%"
+        sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        px: 8,
+        mt: -25,
+        }}
+    >
+        <Typography variant="h4" sx={{ fontWeight: "normal", mb: 4, textAlign: "center" }}>
+        Log In
+        </Typography>
+
+        <TextField label="Email" type="email" fullWidth={false} sx={{ width: "80%", mb: 2 }} />
+        <TextField label="Password" type="password" fullWidth={false} sx={{ width: "80%", mb: 3 }} />
+
+        <Button
+        variant="contained"
+        fullWidth={false}
+        sx={{
+            width: "80%",
+            height: 50,
+            backgroundColor: "#8ee5f4",
+            color: "#000",
+            fontWeight: "bold",
+            mb: 2,
+            "&:hover": { backgroundColor: "#6fd2e0" },
+        }}
+        >
+        Log In
+        </Button>
+
+        <Typography sx={{ mt: 3, textAlign: "center", mb: 2 }}>
+        Don't have an account?
+        </Typography>
+
+        <Button
+        variant="contained"
+        fullWidth={false}
+        sx={{
+            width: "80%",
+            height: 50,
+            fontWeight: "bold",
+            color: "#000",
+            background: "linear-gradient(to right, #58ed87, #57e9ec)",
+            "&:hover": {
+            background: "linear-gradient(to right, #4ddb75, #49d8e0)",
+            },
+        }}
+        onClick={handleCreateAccountClick}
+        >
+        Create An Account
+        </Button>
+    </Box>
+    </Box>
   );
 }
