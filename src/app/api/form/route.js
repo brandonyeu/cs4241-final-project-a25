@@ -5,9 +5,11 @@ export async function POST(req) {
     try {
         const formData = await req.json();
 
-        if(!formData.body) {
+        console.log("form data: ", formData);
+
+        if(!formData) {
             return new NextResponse(
-                JSON.stringify({ error: "Course selection is required"}),
+                JSON.stringify({ error: "Information is missing"}),
                 {
                     status: 400,
                     headers: {
