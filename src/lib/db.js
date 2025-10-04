@@ -1,5 +1,4 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const {global} = require("styled-jsx/css");
 const uri = process.env.MONGODB_URI
 const options = {}
 
