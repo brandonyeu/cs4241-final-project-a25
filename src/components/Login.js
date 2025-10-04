@@ -26,30 +26,36 @@ export default function Login() {
     <Box
         flex="1 1 50%"
         sx={{
-        background: "linear-gradient(to top, #92d0a1 0%, #ffffff 65%)",
+        background: "linear-gradient(to top, #00C9FF 0%, #92FE9D 100%)",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "start",
         alignItems: "flex-start", // left-align content inside
         px: 8, // horizontal padding
-        mt: -42,
         }}
     >
-        <Typography variant="h3" sx={{ fontWeight: "normal", mb: 2, lineHeight: 1.2 }}>
+        <Typography variant="h2" sx={{ fontWeight: "normal", lineHeight: 1.2, mt: 10}}>
         Welcome to
         </Typography>
 
         <Box
         component="img"
-        src="/logotransparent.png"
+        src="/newlogotransparent.png"
         alt="Studi logo"
-        sx={{ width: 300, height: 95, mb: 2 }}
+        sx={{ width: 300, height: "auto", marginLeft: -2.5}}
         />
 
-        <Typography variant="h5" sx={{ mt: 2, lineHeight: 1.3 }}>
+        <Typography variant="h5" sx={{lineHeight: 1.3, mt: 3 }}>
         Meet people who have similar study needs, boosting productivity, while
         forming new connections.
         </Typography>
+
+        <Box
+        component="img"
+        src="/lilstudybuds.png"
+        alt="graphic of two dogs studying"
+        sx={{ width: 450, height: "auto", mt: 5, mb: -40}}
+        />
     </Box>
 
     {/* Right column */}
@@ -61,10 +67,9 @@ export default function Login() {
         justifyContent: "center",
         alignItems: "center",
         px: 8,
-        mt: -25,
         }}
     >
-        <Typography variant="h4" sx={{ fontWeight: "normal", mb: 4, textAlign: "center" }}>
+        <Typography variant="h3" sx={{ fontWeight: "normal", mb: 4, textAlign: "center" }}>
         Log In
         </Typography>
 

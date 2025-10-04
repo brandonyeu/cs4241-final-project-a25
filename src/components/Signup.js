@@ -25,30 +25,35 @@ export default function Signup() {
       <Box
         flex="1 1 50%"
         sx={{
-          background: "linear-gradient(to top, #92d0a1 0%, #ffffff 65%)",
+          background: "linear-gradient(to top, #00C9FF 0%, #92FE9D 100%)",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "start",
           alignItems: "flex-start",
           px: 8,
-          mt: -42,
         }}
       >
-        <Typography variant="h3" sx={{ fontWeight: "normal", mb: 2, lineHeight: 1.2 }}>
+        <Typography variant="h2" sx={{ fontWeight: "normal", lineHeight: 1.2, mt: 10}}>
           Welcome to
         </Typography>
 
         <Box
           component="img"
-          src="/logotransparent.png"
+          src="/newlogotransparent.png"
           alt="Studi logo"
-          sx={{ width: 300, height: 95, mb: 2 }}
+          sx={{ width: 300, height: 95, ml: -2.5}}
         />
 
-        <Typography variant="h5" sx={{ mt: 2, lineHeight: 1.3 }}>
+        <Typography variant="h5" sx={{ lineHeight: 1.3, mt: 3 }}>
           Meet people who have similar study needs, boosting productivity, while
           forming new connections.
         </Typography>
+        <Box
+        component="img"
+        src="/lilstudybuds.png"
+        alt="graphic of two dogs studying"
+        sx={{ width: 450, height: "auto", mt: 5, mb: -40}}
+        />
       </Box>
 
       {/* Right column */}
@@ -63,23 +68,23 @@ export default function Signup() {
           mt: -5,
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "normal", mb: 4, textAlign: "center" }}>
+        <Typography variant="h3" sx={{ fontWeight: "normal", mb: 4, textAlign: "center" }}>
           Create An Account
         </Typography>
 
-        <TextField label="First and Last Name" fullWidth={false} sx={{ width: "80%", mb: 1 }} />
-        <TextField label="Email" type="email" fullWidth={false} sx={{ width: "80%", mb: 1 }} />
-        <TextField label="Major" fullWidth={false} sx={{ width: "80%", mb: 1 }} />
-        <TextField label="Graduation Year" fullWidth={false} sx={{ width: "80%", mb: 1 }} />
-        <TextField label="Preferred Language" fullWidth={false} sx={{ width: "80%", mb: 1 }} />
-        <TextField label="Password" type="password" fullWidth={false} sx={{ width: "80%", mb: 2 }} />
+        <TextField label="First and Last Name" fullWidth={false} sx={{ width: "80%", mb: 2 }} />
+        <TextField label="Email" type="email" fullWidth={false} sx={{ width: "80%", mb: 2 }} />
+        <TextField label="Major" fullWidth={false} sx={{ width: "80%", mb: 2 }} />
+        <TextField label="Graduation Year" fullWidth={false} sx={{ width: "80%", mb: 2 }} />
+        <TextField label="Preferred Language" fullWidth={false} sx={{ width: "80%", mb: 2 }} />
+        <TextField label="Password" type="password" fullWidth={false} sx={{ width: "80%", mb: 3 }} />
 
         <Button
           variant="contained"
           fullWidth={false}
           sx={{
             width: "80%",
-            height: 40,
+            height: 50,
             fontWeight: "bold",
             color: "#000",
             background: "linear-gradient(to right, #58ed87, #57e9ec)",
@@ -97,7 +102,7 @@ export default function Signup() {
           fullWidth={false}
           sx={{
             width: "80%",
-            height: 40,
+            height: 50,
             fontWeight: "bold",
             color: "#000",
             backgroundColor: "#8ee5f4",
