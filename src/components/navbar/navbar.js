@@ -6,7 +6,7 @@ export default function NavBar() {
         <nav className="w-full h-16 bg-white text-black flex items-center justify-between px-8">
             {/* Left side: logo + nav links */}
             <div className="flex items-center space-x-6">
-                <Link href="/public">
+                <Link href="/">
                     <img src="logo.png" alt="Logo" width="160" height="20" />
                 </Link>
                 <Link href="/matches" className="hover:underline hover:opacity-80">My Buddies</Link>
