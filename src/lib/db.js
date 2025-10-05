@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = globalThis.process.env.MONGODB_URI
+const uri = process.env.MONGODB_URI
 const options = {}
 
 if(!uri) {
