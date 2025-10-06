@@ -1,10 +1,11 @@
+"use client";
+
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 import Link from "next/link";
 
 export default function NavBar() {
     return (
         <nav className="w-full h-16 bg-white text-black flex items-center justify-between px-8">
-            {/* Left side: logo + nav links */}
             <div className="flex items-center space-x-6">
                 <Link href="/">
                     <img src="logo.png" alt="Logo" width="160" height="20" />
@@ -13,7 +14,6 @@ export default function NavBar() {
                 <Link href="/messages" className="hover:underline hover:opacity-80">Messages</Link>
             </div>
 
-            {/* Right side: button + profile */}
             <div className="flex items-center space-x-4">
                 <Link
                     href="/form"
