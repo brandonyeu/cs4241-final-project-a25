@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
             <body className={lexend.className}>
                 <SessionWrapper>
                     <ClientThemeProvider>
-                        <NavBar />
+                        <Navbar />
                         {children}
                     </ClientThemeProvider>
                 </SessionWrapper>
