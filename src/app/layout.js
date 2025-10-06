@@ -2,6 +2,7 @@ import { Lexend } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import ClientThemeProvider from "@/utils/clientThemeProvider";
+import SessionWrapper from "@/utils/SessionWrapper";
 
 const lexend = Lexend({
     subsets: ["latin"],
@@ -15,14 +16,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return (
-      <html lang="en">
-          <body className={lexend.className}>
-            <ClientThemeProvider>
-                <Navbar />
-                {children}
-            </ClientThemeProvider>
-          </body>
-      </html>
-  );
+    return (
+        <html lang="en">
+            <body className={lexend.className}>
+                <SessionWrapper>
+                    <ClientThemeProvider>
+                        <NavBar />
+                        {children}
+                    </ClientThemeProvider>
+                </SessionWrapper>
+            </body>
+        </html>
+    );
 }
