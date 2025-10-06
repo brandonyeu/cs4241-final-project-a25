@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import MatchCard from "@/components/MatchCard";
+import MatchCard from "@/components/matchCard/matchCard";
 
 export default function Matches() {
     // hardcoding this for now for testing purposes
