@@ -1,5 +1,6 @@
 import clientPromise from "@/lib/db";
 import {NextResponse} from "next/server";
+import bcrypt from "bcryptjs";
 
 export async function POST(req) {
     try {
@@ -20,6 +21,11 @@ export async function POST(req) {
                 }
             )
         }
+
+        const hashedPassword = await bcrypt.hash(formData.password, 10);
+
+        const { confirmPassword, ...userData } = formData;
+        userData.password = hashedPassword;
 
         const result = await collection.insertOne(formData);
 
