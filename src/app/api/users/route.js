@@ -2,6 +2,7 @@ import clientPromise from "@/lib/db";
 import {NextResponse} from "next/server";
 import bcrypt from "bcryptjs";
 
+// test revert commit
 export async function POST(req) {
     try {
         const formData = await req.json();
