@@ -3,7 +3,7 @@
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import theme from "@/utils/theme";
-import NavBar from "@/components/navbar/navbar";
+import Navbar from "@/components/navbar/Navbar";
 import { usePathname } from "next/navigation";
 
 export default function ClientThemeProvider({ children }) {
@@ -13,7 +13,7 @@ export default function ClientThemeProvider({ children }) {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            {!hideNav && <NavBar />}
+            {!hideNav && <Navbar />}
             {children}
         </ThemeProvider>
     );

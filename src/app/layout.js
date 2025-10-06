@@ -1,6 +1,6 @@
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/navbar/navbar";
+import Navbar from "@/components/navbar/Navbar";
 import ClientThemeProvider from "@/utils/clientThemeProvider";
 
 const lexend = Lexend({
@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
           <body className={lexend.className}>
             <ClientThemeProvider>
-                <NavBar />
+                <Navbar />
                 {children}
             </ClientThemeProvider>
           </body>
