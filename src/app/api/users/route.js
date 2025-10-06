@@ -7,9 +7,11 @@ export async function POST(req) {
 
         const client = await clientPromise;
         const db = client.db("studi");
-        const collection = db.collection("form");
+        const collection = db.collection("user");
 
-        if (collection.find({email: req.body.email}).count() > 0) {
+        const existingUser = await collection.countDocuments({email: formData.email});
+
+        if (existingUser > 0) {
             return new NextResponse(JSON.stringify({error: "Email already exists"}), {
                     status: 409,
                     headers: {
