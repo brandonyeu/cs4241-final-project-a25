@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Stepper, Step, StepLabel, Button, Box } from "@mui/material";
 
-import Step1 from "./formSteps/step1";
-import Step2 from "./formSteps/step2";
-import Step3 from "./formSteps/step3";
-import Step4 from "./formSteps/step4";
-import Step5 from "./formSteps/step5";
-import Step6 from "./formSteps/step6";
+import Step1 from "@/components/multistepform/formSteps/step1";
+import Step2 from "@/components/multistepform/formSteps/step2";
+import Step3 from "@/components/multistepform/formSteps/step3";
+import Step4 from "@/components/multistepform/formSteps/step4";
+import Step5 from "@/components/multistepform/formSteps/step5";
+import Step6 from "@/components/multistepform/formSteps/step6";
 
 const steps = [
     "Instructions",
@@ -44,12 +44,15 @@ export default function MultiStepForm() {
 
     // send info to backend on submit
     const handleSubmit = async () => {
-        await fetch("/api/form", {
+        const response = await fetch("/api/form", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
         });
         alert("Form submitted!");
+
+        console.log("response status: ", response.status);
+        console.log("response data: ", await response.json());
     };
 
     return (

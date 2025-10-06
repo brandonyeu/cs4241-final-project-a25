@@ -1,6 +1,6 @@
 "use client";
 
-import MultiStepForm from "@/components/MultiStepForm";
+import MultiStepForm from "@/components/multistepform/MultiStepForm";
 import { Box } from "@mui/material";
 
 export default function Form() {
