@@ -1,6 +1,5 @@
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
 import ClientThemeProvider from "@/utils/clientThemeProvider";
 import SessionWrapper from "@/utils/SessionWrapper";
 
