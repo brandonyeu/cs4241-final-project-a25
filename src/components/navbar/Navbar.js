@@ -3,7 +3,7 @@
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 import Link from "next/link";
 
-export default function NavBar() {
+export default function Navbar() {
     return (
         <nav className="w-full h-16 bg-white text-black flex items-center justify-between px-8">
             <div className="flex items-center space-x-6">
