@@ -12,13 +12,13 @@ const handler = NextAuth({
             },
             async authorize(credentials) {
                 try {
-                    console.log("🔍 Checking credentials for:", credentials.email);
+                    console.log("Checking credentials for:", credentials.email);
 
                     const client = await clientPromise;
                     const db = client.db();
 
                     // Find user by email
-                    const user = await db.collection("users").findOne({ email: credentials.email });
+                    const user = await db.collection("user").findOne({ email: credentials.email });
                     console.log("User found:", user);
 
                     if (!user) {

@@ -19,7 +19,7 @@ export async function POST(request) {
         }
 
         // Check if user already exists
-        const existingUser = await db.collection("users").findOne({ email });
+        const existingUser = await db.collection("user").findOne({ email });
         if (existingUser) {
             return NextResponse.json({ error: "User already exists" }, { status: 400 });
         }
@@ -35,7 +35,7 @@ export async function POST(request) {
             createdAt: new Date(),
         };
 
-        await db.collection("users").insertOne(newUser);
+        await db.collection("user").insertOne(newUser);
 
         return NextResponse.json({ message: "User created successfully" }, { status: 201 });
     } catch (error) {
