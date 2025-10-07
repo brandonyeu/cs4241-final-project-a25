@@ -1,5 +1,6 @@
 import clientPromise from "@/lib/db";
 import {NextResponse} from "next/server";
+import bcrypt from "bcryptjs";
 
 // test revert commit
 export async function POST(req) {
@@ -22,6 +23,13 @@ export async function POST(req) {
             )
         }
 
+        if (formData.password) {
+            const salt = await bcrypt.genSalt(10);
+            formData.password = await bcrypt.hash(formData.password, salt);
+        }
+
+        delete formData.confirmPassword;
+
         const result = await collection.insertOne(formData);
 
         return new NextResponse(JSON.stringify(
@@ -38,10 +46,17 @@ export async function POST(req) {
             });
     } catch (err) {
         console.error(err);
+        return new NextResponse(JSON.stringify({error: "Internal server error"}), {
+            status: 500,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
     }
 }
 
 export async function GET(req, res) {
+
 }
 
 export async function DELETE(req, res) {
