@@ -23,6 +23,16 @@ export async function POST(req) {
             )
         }
 
+        if(formData.password !== formData.confirmPassword) {
+            return new NextResponse(JSON.stringify({error: "Passwords do not match"}), {
+                    status: 400,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+        }
+
         if (formData.password) {
             const salt = await bcrypt.genSalt(10);
             formData.password = await bcrypt.hash(formData.password, salt);
