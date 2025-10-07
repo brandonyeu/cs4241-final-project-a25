@@ -1,5 +1,6 @@
 import clientPromise from "@/lib/db";
 import { NextResponse } from "next/server";
+import formDataToVector from "@/utils/formDataToVector";
 
 export async function POST(req) {
     const getDistance = function (inputVector, candidateVector) {
@@ -9,13 +10,22 @@ export async function POST(req) {
     }
 
     const getBestNMatches = function (inputVector, candidateVectors, n) {
-        const distances = candidateVectors.map(candidateVector => getDistance(inputVector, candidateVector));
-        const sortedDistances = distances.sort((a, b) => a - b);
-        return sortedDistances.slice(0, n);
+        const distances = candidateVectors.map(candidate => ({
+            form: candidate.form,
+            distance: getDistance(inputVector, candidate.vector)
+        }));
+        const sortedMatches = distances.sort((a, b) => a.distance - b.distance);
+        return sortedMatches.slice(0, n);
     }
 
     try {
         const {course, personality, priority, assignment, communicationStyle, noiseLevel, isOnline, timeOfDay, studyPace, breakStyle} = await req.json();
+
+        const inputVector = formDataToVector({
+            course, personality, priority, assignment,
+            communicationStyle, noiseLevel, isOnline,
+            timeOfDay, studyPace, breakStyle
+        });
 
         const client = await clientPromise;
         const db = client.db("studi");
@@ -23,9 +33,24 @@ export async function POST(req) {
 
         const formsFromSameClass = await collection.find({course: course}).toArray();
 
-        console.log(formsFromSameClass);
+        const candidateVectors = formsFromSameClass.map(form => ({
+            form: form,
+            vector: formDataToVector(form)
+        }));
 
-        return new NextResponse(JSON.stringify({success: true}), {
+        // change n to however many matches you want to return
+        const bestMatches = getBestNMatches(inputVector, candidateVectors, 5);
+
+        console.log("Best matches:", bestMatches);
+
+        return new NextResponse(JSON.stringify(
+            {
+                success: true,
+                matches: bestMatches.map(match => ({
+                    ...match.form,
+                    matchScore: match.distance,
+                }))
+            }), {
             status: 200,
             headers: {
                 "Content-Type": "application/json",
