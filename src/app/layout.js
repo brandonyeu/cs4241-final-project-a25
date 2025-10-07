@@ -1,6 +1,6 @@
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/navbar/navbar";
+import Navbar from "@/components/navbar/navbar";
 import ClientThemeProvider from "@/utils/clientThemeProvider";
 import SessionWrapper from "@/utils/SessionWrapper";
 
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
             <body className={lexend.className}>
                 <SessionWrapper>
                     <ClientThemeProvider>
-                        <NavBar />
+                        <Navbar />
                         {children}
                     </ClientThemeProvider>
                 </SessionWrapper>
