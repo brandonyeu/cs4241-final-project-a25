@@ -13,7 +13,7 @@ passport.use(
             try {
                 const client = await clientPromise;
                 const db = client.db('studi');
-                const collection = db.collection('users');
+                const collection = db.collection('user');
 
                 const user = await collection.findOne({ email });
 
@@ -37,7 +37,7 @@ passport.deserializeUser(async (id, done) => {
     try {
         const client = await clientPromise;
         const db = client.db('studi');
-        const users = db.collection('users');
+        const users = db.collection('user');
         const { ObjectId } = require('mongodb');
 
         const user = await users.findOne({ _id: new ObjectId(id) });
