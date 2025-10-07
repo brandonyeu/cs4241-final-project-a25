@@ -5,8 +5,6 @@ export async function POST(req) {
     try {
         const formData = await req.json();
 
-        console.log("form data: ", formData);
-
         if(!formData) {
             return new NextResponse(
                 JSON.stringify({ error: "Information is missing"}),
@@ -55,7 +53,7 @@ export async function POST(req) {
     }
 }
 
-export async function GET(req, res) {
-//     first commit
+export async function GET(req) {
+
 }
 

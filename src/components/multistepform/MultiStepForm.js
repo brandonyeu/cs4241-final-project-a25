@@ -44,15 +44,26 @@ export default function MultiStepForm() {
 
     // send info to backend on submit
     const handleSubmit = async () => {
+        const jsonFormData = JSON.stringify(formData);
         const response = await fetch("/api/form", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
+            body: jsonFormData,
         });
         alert("Form submitted!");
 
         console.log("response status: ", response.status);
         console.log("response data: ", await response.json());
+
+        console.log(jsonFormData);
+
+        const request = await fetch("/api/matches", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: jsonFormData,
+        });
+
+        console.log("request status: ", request.status);
     };
 
     return (
