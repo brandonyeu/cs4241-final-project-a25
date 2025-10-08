@@ -1,8 +1,9 @@
 "use client";
 
-import {useState} from "react";
-import {useRouter} from "next/navigation";
 import {Box, Button, Step, StepLabel, Stepper} from "@mui/material";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Stepper, Step, StepLabel, Button, Box } from "@mui/material";
 
 import Step1 from "@/components/multistepform/formSteps/step1";
 import Step2 from "@/components/multistepform/formSteps/step2";
@@ -25,6 +26,7 @@ export default function MultiStepForm() {
     const [activeStep, setActiveStep] = useState(0);
     // store form data
     const [formData, setFormData] = useState({});
+    const router = useRouter();
 
     // update form data
     const onChange = (e) => {
@@ -35,19 +37,28 @@ export default function MultiStepForm() {
     // change current step when clicking next and back buttons
     const handleNext = () => setActiveStep((prev) => prev + 1);
     const handleBack = () => setActiveStep((prev) => prev - 1);
-    
-    // go back to home page if cancel
-    const router = useRouter(); 
+
     const handleCancel = () => {
         router.push("/");
     };
 
     // send info to backend on submit
     const handleSubmit = async () => {
+        // Attach logged-in userId to formData
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+            alert("Could not find your user ID. Please re-login.");
+            return;
+        }
+
+        const formDataWithUser = { ...formData, userId };
+
+        const jsonFormData = JSON.stringify(formDataWithUser);
+
         const response = await fetch("/api/form", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
+            body: jsonFormData,
         });
 
         const responseData = await response.json();
@@ -68,7 +79,12 @@ export default function MultiStepForm() {
             headers: { "Content-Type": "application/json" },
         });
 
-        alert("Form submitted!");
+        if (response.ok) {
+            alert("Form submitted successfully!");
+        } else {
+            const errorData = await response.json();
+            alert(`Error submitting form: ${errorData.message || "Unknown error"}`);
+        }
     };
 
     return (
