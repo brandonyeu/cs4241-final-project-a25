@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Stepper, Step, StepLabel, Button, Box } from "@mui/material";
+import {useState} from "react";
+import {useRouter} from "next/navigation";
+import {Box, Button, Step, StepLabel, Stepper} from "@mui/material";
 
 import Step1 from "@/components/multistepform/formSteps/step1";
 import Step2 from "@/components/multistepform/formSteps/step2";
@@ -44,26 +44,34 @@ export default function MultiStepForm() {
 
     // send info to backend on submit
     const handleSubmit = async () => {
-        const jsonFormData = JSON.stringify(formData);
         const response = await fetch("/api/form", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: jsonFormData,
+            body: JSON.stringify(formData),
         });
-        alert("Form submitted!");
+
+        const responseData = await response.json();
+        formData.targetFormId = responseData.id;
 
         console.log("response status: ", response.status);
-        console.log("response data: ", await response.json());
+        console.log("response data: ", responseData);
 
-        console.log(jsonFormData);
-
-        const request = await fetch("/api/matches", {
+        await fetch("/api/matches", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: jsonFormData,
+            body: JSON.stringify(formData),
         });
 
-        console.log("request status: ", request.status);
+        console.log(responseData.id);
+
+        const matchBatch = await fetch(`api/matches?targetForm=${responseData.id}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        });
+
+        console.log("match batch: ", await matchBatch.json());
+
+        alert("Form submitted!");
     };
 
     return (
