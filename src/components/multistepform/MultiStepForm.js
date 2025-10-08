@@ -3,7 +3,6 @@
 import {Box, Button, Step, StepLabel, Stepper} from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Stepper, Step, StepLabel, Button, Box } from "@mui/material";
 
 import Step1 from "@/components/multistepform/formSteps/step1";
 import Step2 from "@/components/multistepform/formSteps/step2";
@@ -51,15 +50,13 @@ export default function MultiStepForm() {
             return;
         }
 
-        const formDataWithUser = { ...formData, userId };
-
-        const jsonFormData = JSON.stringify(formDataWithUser);
-
         const response = await fetch("/api/form", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: jsonFormData,
+            body: JSON.stringify(formData),
         });
+
+        formData.userId = userId;
 
         const responseData = await response.json();
 

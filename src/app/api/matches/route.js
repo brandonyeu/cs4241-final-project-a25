@@ -64,6 +64,12 @@ export async function POST(req) {
             createdAt: new Date()
         });
 
+        console.log({
+            target: target,
+            targetId: id,
+            bestMatches: bestMatches,
+            createdAt: new Date()
+        })
         console.log("Match batch inserted");
 
         return new NextResponse(JSON.stringify(
@@ -106,8 +112,9 @@ export async function GET(req) {
             }), { status: 400 });
         }
 
-        const matchBatch = await db.collection("match_batch").findOne({ targetId: target }
-        );
+        console.log("targetId: ", target)
+
+        const matchBatch = await db.collection("match_batch").findOne({ targetId: target.trim() });
 
         console.log("matchBatch: ", matchBatch)
 
