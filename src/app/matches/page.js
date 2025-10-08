@@ -7,7 +7,7 @@ export default async function Matches() {
         const matches = [
             {
                 user: {
-                    id: 1,
+                    _id: 1,
                     name: "Arianna Xie",
                     major: "CS",
                     graduationYear: 2026,
@@ -29,7 +29,7 @@ export default async function Matches() {
             },
             {
                 user: {
-                    id: 2,
+                    _id: 2,
                     name: "Amanda P",
                     major: "CS",
                     graduationYear: 2026,
@@ -51,7 +51,7 @@ export default async function Matches() {
             },
             {
                 user: {
-                    id: 5,
+                    _id: 5,
                     name: "Emma Lin",
                     major: "DS",
                     graduationYear: 2026,
