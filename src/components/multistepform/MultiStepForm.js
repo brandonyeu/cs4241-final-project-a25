@@ -51,10 +51,8 @@ export default function MultiStepForm() {
         });
 
         const responseData = await response.json();
-        formData.targetFormId = responseData.id;
 
-        console.log("response status: ", response.status);
-        console.log("response data: ", responseData);
+        formData.id = responseData.id;
 
         await fetch("/api/matches", {
             method: "POST",
@@ -62,14 +60,13 @@ export default function MultiStepForm() {
             body: JSON.stringify(formData),
         });
 
-        console.log(responseData.id);
-
+        /*
+        example match batch request (move this to the dashboard page, but have responseData persist from this page to dashboard)
+         */
         const matchBatch = await fetch(`api/matches?targetForm=${responseData.id}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
         });
-
-        console.log("match batch: ", await matchBatch.json());
 
         alert("Form submitted!");
     };

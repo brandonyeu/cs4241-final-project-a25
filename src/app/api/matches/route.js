@@ -23,7 +23,6 @@ export async function POST(req) {
 
     try {
         const {
-            id,
             course,
             personality,
             priority,
@@ -33,7 +32,8 @@ export async function POST(req) {
             isOnline,
             timeOfDay,
             studyPace,
-            breakStyle
+            breakStyle,
+            id,
         } = target;
 
         const inputVector = formDataToVector({
@@ -56,12 +56,10 @@ export async function POST(req) {
         // change n to however many matches you want to return
         const bestMatches = getBestNMatches(inputVector, candidateVectors, 10);
 
-        console.log("Target form: ", target);
-        console.log("Best matches:", bestMatches);
-
         const matchBatchCollection = db.collection("match_batch");
         await matchBatchCollection.insertOne({
             target: target,
+            targetId: id,
             bestMatches: bestMatches,
             createdAt: new Date()
         });
@@ -96,7 +94,7 @@ export async function POST(req) {
 export async function GET(req) {
     try {
         const client = await clientPromise;
-        const db = client.db();
+        const db = client.db("studi");
 
         const { searchParams } = new URL(req.url);
         const target = searchParams.get('targetForm');
@@ -108,12 +106,10 @@ export async function GET(req) {
             }), { status: 400 });
         }
 
-        const matchBatch = await db.collection("match_batch").findOne(
-            {
-                target: body.target,
-                createdAt: body.createdAt
-            }
+        const matchBatch = await db.collection("match_batch").findOne({ targetId: target }
         );
+
+        console.log("matchBatch: ", matchBatch)
 
         return new NextResponse(
             JSON.stringify({
