@@ -1,3 +1,296 @@
+// "use client";
+
+// import { useState, useEffect } from "react";
+// import { useRouter } from "next/navigation";
+// import { Button, TextField, Typography, Box } from "@mui/material";
+
+// export default function Signup() {
+//     const router = useRouter();
+//     const [username, setUsername] = useState("");
+//     const [password, setPassword] = useState("");
+
+//     useEffect(() => {
+//         document.body.style.overflowY = "hidden";
+//         return () => {
+//             document.body.style.overflowY = "auto";
+//         };
+//     }, []);
+
+//     const handleSignup = async () => {
+//         try {
+//             const res = await fetch("/api/signup", {
+//                 method: "POST",
+//                 headers: { "Content-Type": "application/json" },
+//                 body: JSON.stringify({ username, password }),
+//             });
+
+//             const data = await res.json();
+//             if (!res.ok) {
+//                 alert(data.error || "Failed to create account");
+//                 return;
+//             }
+
+//             alert("Account created successfully!");
+//             router.push("/login");
+//         } catch (error) {
+//             alert("An unexpected error occurred.");
+//         }
+//     };
+
+//     const handleBackToLoginClick = () => {
+//         router.push("/login");
+//     };
+
+//     return (
+//         <Box display="flex" height="100vh" overflow="hidden">
+//             {/* Left column */}
+//             <Box
+//                 flex="1 1 50%"
+//                 sx={{
+//                     background: "linear-gradient(to top, #00C9FF 0%, #92FE9D 100%)",
+//                     display: "flex",
+//                     flexDirection: "column",
+//                     justifyContent: "start",
+//                     alignItems: "flex-start",
+//                     px: 8,
+//                 }}
+//             >
+//                 <Typography variant="h2" sx={{ fontWeight: "normal", lineHeight: 1.2, mt: 10 }}>
+//                     Welcome to
+//                 </Typography>
+//                 <Box
+//                     component="img"
+//                     src="/newlogotransparent.png"
+//                     alt="Studi logo"
+//                     sx={{ width: 300, height: 95, ml: -2.5 }}
+//                 />
+//                 <Typography variant="h5" sx={{ lineHeight: 1.3, mt: 3 }}>
+//                     Meet people who have similar study needs, boosting productivity, while forming new connections.
+//                 </Typography>
+//                 <Box
+//                     component="img"
+//                     src="/lilstudybuds.png"
+//                     alt="graphic of two dogs studying"
+//                     sx={{ width: 450, height: "auto", mt: 5, mb: -40 }}
+//                 />
+//             </Box>
+
+//             {/* Right column */}
+//             <Box
+//                 flex="1 1 50%"
+//                 sx={{
+//                     display: "flex",
+//                     flexDirection: "column",
+//                     justifyContent: "center",
+//                     alignItems: "center",
+//                     px: 8,
+//                     mt: -5,
+//                 }}
+//             >
+//                 <Typography variant="h3" sx={{ fontWeight: "normal", mb: 4, textAlign: "center" }}>
+//                     Create An Account
+//                 </Typography>
+
+//                 <TextField
+//                     label="Username"
+//                     value={username}
+//                     onChange={(e) => setUsername(e.target.value)}
+//                     sx={{ width: "80%", mb: 2 }}
+//                 />
+//                 <TextField
+//                     label="Password"
+//                     type="password"
+//                     value={password}
+//                     onChange={(e) => setPassword(e.target.value)}
+//                     sx={{ width: "80%", mb: 3 }}
+//                 />
+
+//                 <Button
+//                     variant="contained"
+//                     onClick={handleSignup}
+//                     sx={{
+//                         width: "80%",
+//                         height: 50,
+//                         fontWeight: "bold",
+//                         color: "#000",
+//                         background: "linear-gradient(to right, #58ed87, #57e9ec)",
+//                         mb: 2,
+//                         "&:hover": {
+//                             background: "linear-gradient(to right, #4ddb75, #49d8e0)",
+//                         },
+//                     }}
+//                 >
+//                     Create Account
+//                 </Button>
+
+//                 <Button
+//                     variant="contained"
+//                     fullWidth={false}
+//                     sx={{
+//                         width: "80%",
+//                         height: 50,
+//                         fontWeight: "bold",
+//                         color: "#000",
+//                         backgroundColor: "#8ee5f4",
+//                         "&:hover": { backgroundColor: "#6fd2e0" },
+//                         mt: 2,
+//                     }}
+//                     onClick={handleBackToLoginClick}
+//                 >
+//                     Back to Login
+//                 </Button>
+//             </Box>
+//         </Box>
+//     );
+// }
+
+
+// "use client";
+
+// import { useState, useEffect } from "react";
+// import { useRouter } from "next/navigation";
+// import { Button, TextField, Typography, Box } from "@mui/material";
+
+// export default function Signup() {
+//     const router = useRouter();
+//     const [username, setUsername] = useState("");
+//     const [password, setPassword] = useState("");
+
+//     useEffect(() => {
+//         document.body.style.overflowY = "hidden";
+//         return () => {
+//             document.body.style.overflowY = "auto";
+//         };
+//     }, []);
+
+//     const handleSignup = async () => {
+//         try {
+//             const res = await fetch("/api/signup", {
+//                 method: "POST",
+//                 headers: { "Content-Type": "application/json" },
+//                 body: JSON.stringify({ username, password }),
+//             });
+
+//             const data = await res.json();
+//             if (!res.ok) {
+//                 alert(data.error || "Failed to create account");
+//                 return;
+//             }
+
+//             alert("Account created successfully!");
+//             router.push("/login");
+//         } catch (error) {
+//             alert("An unexpected error occurred.");
+//         }
+//     };
+
+//     const handleBackToLoginClick = () => {
+//         router.push("/login");
+//     };
+
+//     return (
+//         <Box display="flex" height="100vh" overflow="hidden">
+//             {/* Left column */}
+//             <Box
+//                 flex="1 1 50%"
+//                 sx={{
+//                     background: "linear-gradient(to top, #00C9FF 0%, #92FE9D 100%)",
+//                     display: "flex",
+//                     flexDirection: "column",
+//                     justifyContent: "start",
+//                     alignItems: "flex-start",
+//                     px: 8,
+//                 }}
+//             >
+//                 <Typography variant="h2" sx={{ fontWeight: "normal", lineHeight: 1.2, mt: 10 }}>
+//                     Welcome to
+//                 </Typography>
+//                 <Box
+//                     component="img"
+//                     src="/newlogotransparent.png"
+//                     alt="Studi logo"
+//                     sx={{ width: 300, height: 95, ml: -2.5 }}
+//                 />
+//                 <Typography variant="h5" sx={{ lineHeight: 1.3, mt: 3 }}>
+//                     Meet people who have similar study needs, boosting productivity, while forming new connections.
+//                 </Typography>
+//                 <Box
+//                     component="img"
+//                     src="/lilstudybuds.png"
+//                     alt="graphic of two dogs studying"
+//                     sx={{ width: 450, height: "auto", mt: 5, mb: -40 }}
+//                 />
+//             </Box>
+
+//             {/* Right column */}
+//             <Box
+//                 flex="1 1 50%"
+//                 sx={{
+//                     display: "flex",
+//                     flexDirection: "column",
+//                     justifyContent: "center",
+//                     alignItems: "center",
+//                     px: 8,
+//                     mt: -5,
+//                 }}
+//             >
+//                 <Typography variant="h3" sx={{ fontWeight: "normal", mb: 4, textAlign: "center" }}>
+//                     Create An Account
+//                 </Typography>
+
+//                 <TextField
+//                     label="Username"
+//                     value={username}
+//                     onChange={(e) => setUsername(e.target.value)}
+//                     sx={{ width: "80%", mb: 2 }}
+//                 />
+//                 <TextField
+//                     label="Password"
+//                     type="password"
+//                     value={password}
+//                     onChange={(e) => setPassword(e.target.value)}
+//                     sx={{ width: "80%", mb: 3 }}
+//                 />
+
+//                 <Button
+//                     variant="contained"
+//                     onClick={handleSignup}
+//                     sx={{
+//                         width: "80%",
+//                         height: 50,
+//                         fontWeight: "bold",
+//                         color: "#000",
+//                         background: "linear-gradient(to right, #58ed87, #57e9ec)",
+//                         mb: 2,
+//                         "&:hover": {
+//                             background: "linear-gradient(to right, #4ddb75, #49d8e0)",
+//                         },
+//                     }}
+//                 >
+//                     Create Account
+//                 </Button>
+
+//                 <Button
+//                     variant="contained"
+//                     fullWidth={false}
+//                     sx={{
+//                         width: "80%",
+//                         height: 50,
+//                         fontWeight: "bold",
+//                         color: "#000",
+//                         backgroundColor: "#8ee5f4",
+//                         "&:hover": { backgroundColor: "#6fd2e0" },
+//                         mt: 2,
+//                     }}
+//                     onClick={handleBackToLoginClick}
+//                 >
+//                     Back to Login
+//                 </Button>
+//             </Box>
+//         </Box>
+//     );
+// }
+
 "use client";
 
 import { useState, useEffect } from "react";
