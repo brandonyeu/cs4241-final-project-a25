@@ -24,7 +24,7 @@ export default function MultiStepForm() {
     // current step
     const [activeStep, setActiveStep] = useState(0);
     // store form data
-    const [formData, setFormData] = useState({});
+    let [formData, setFormData] = useState({});
     const router = useRouter();
 
     // update form data
@@ -50,13 +50,14 @@ export default function MultiStepForm() {
             return;
         }
 
+        formData.userId = userId;
+
         const response = await fetch("/api/form", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
         });
 
-        formData.userId = userId;
 
         const responseData = await response.json();
 
