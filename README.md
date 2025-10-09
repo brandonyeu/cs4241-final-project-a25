@@ -122,15 +122,38 @@ Studi is a study buddy matching app that matches students looking for a study bu
 
 ## Group Member Responsibilities
 ### Amanda Chavarria Pleitez
-I designed and developed the front-end for the login, signup, and homepage of the application. I implemented the mapFormToVector function, which prepares user form data for use in the Euclidean distance algorithm for matching study buddies. Additionally, I contributed to writing the README and conducted accessibility testing using Google Lighthouse, providing an analysis of the results and recommendations for improvements.
+I designed and developed the front-end for the login, signup, and homepage of the application.
+I implemented the mapFormToVector function, which prepares user form data for use in the Euclidean distance algorithm for matching study buddies.
+Additionally, I contributed to writing the README and conducted accessibility testing using Google Lighthouse, 
+providing an analysis of the results and recommendations for improvements.
 
 ### Arianna Xie
-I created the initial Figma design idea for the application and developed the front-end of the preference form. I also developed the front-end of the match cards and created the back-end GET route for the form and updated the home page to render the forms (sorted by course) the user created on the home page. I also updated the back-end API and home page to render the match cards of the best matches when a form is selected. Additionally, using the lighthouse accessibility score, I improved the accessibility of our project by making changes, like adding aria labels to links, to maximize the accessibility scores. I contributed to writing the project description, key technologies, and challenges in the README.
+I created the initial Figma design idea for the application and developed the front-end of the preference form. 
+I also developed the front-end of the match cards and created the back-end GET route for the form and
+updated the home page to render the forms (sorted by course) the user created on the home page.
+I also updated the back-end API and home page to render the match cards of the best matches when a form is selected. 
+Additionally, using the lighthouse accessibility score, I improved the accessibility of our project by making changes, 
+like adding aria labels to links, to maximize the accessibility scores. I contributed to writing the project description, 
+key technologies, and challenges in the README.
 
 ### Brandon Yeu
-I contributed to the Figma design, layout, and user flow of our application. I set up the project with our initial specifications. I implemented authentication using NextAuth, which handles user and account information both client-side and server-side. This user information is used throughout the app, to make sure that users are on correct pages that they have access to and is key to the functionality of the app. I connected the form, login, signup, and profile pages to the backend by writing API calls for all of them. I created initial login and signup pages for testing which were developed into our final pages. I created the profile page to allow our development team to see if user information was being passed to and from the database correctly. I handled merge conflicts to output our final product, and handled deployment. I contributed to the project description, key technologies, and challenges in the README.
+I contributed to the Figma design, layout, and user flow of our application. 
+I set up the project with our initial specifications. I implemented authentication using NextAuth,
+which handles user and account information both client-side and server-side.
+This user information is used throughout the app, to make sure that users are on 
+correct pages that they have access to and is key to the functionality of the app.
+I connected the form, login, signup, and profile pages to the backend by writing API calls for all of them. 
+I created initial login and signup pages for testing which were developed into our final pages.
+I created the profile page to allow our development team to see if user information was being passed to and from the database correctly.
+I handled merge conflicts to output our final product, and handled deployment.
+I contributed to the project description, key technologies, and challenges in the README.
 
 ### Charles Anton Sibal
+I contributed to the Figma ideation for the application. I set up the structure of the project, such as the directory structure, database, and environment/dependency setup.
+I implemented data persistence through the use of MongoDB Atlas. I implemented form API post route, which handles the form data and updates the database.
+I implemented the form matching algorithm in the matches post route, which uses Euclidean distance to find the best matches.
+I implemented the get match get route, which queries the database for the user's form data and returns the best matches.
+I contributed to the project description, key technologies, and challenges in the README.
 
 
 ### Accessibility Features
