@@ -33,13 +33,21 @@ export async function POST(req) {
             timeOfDay,
             studyPace,
             breakStyle,
+            userId,
             id,
         } = target;
 
         const inputVector = formDataToVector({
-            course, personality, priority, assignment,
-            communicationStyle, noiseLevel, isOnline,
-            timeOfDay, studyPace, breakStyle
+            course,
+            personality,
+            priority,
+            assignment,
+            communicationStyle,
+            noiseLevel,
+            isOnline,
+            timeOfDay,
+            studyPace,
+            breakStyle,
         });
 
         const client = await clientPromise;
@@ -47,35 +55,46 @@ export async function POST(req) {
         const formCollection = db.collection("form");
         const userCollection = db.collection("user");
 
-        const formsFromSameClass = await formCollection.find({course: course}).toArray();
+        const formsFromSameClass = await formCollection
+            .find({ course: course })
+            .toArray();
+            
+        // Filter out the current user's forms
+        const candidateForms = formsFromSameClass.filter(
+            (f) => f.userId !== userId
+        );
 
-        const candidateVectors = formsFromSameClass.map(form => ({
+        const candidateVectors = candidateForms.map((form) => ({
             form: form,
-            vector: formDataToVector(form)
+            vector: formDataToVector(form),
         }));
 
         // Get best matches
-        const bestMatches = getBestNMatches(inputVector, candidateVectors, 10);
+        const bestMatches = getBestNMatches(inputVector, candidateVectors, 6);
 
         // Fetch user data for each match
-        const userIds = bestMatches.map(match => new ObjectId(match.form.userId));
-        const users = await userCollection.find({ _id: { $in: userIds } }).toArray();
+        const userIds = bestMatches.map(
+            (match) => new ObjectId(match.form.userId)
+        );
+        const users = await userCollection
+            .find({ _id: { $in: userIds } })
+            .toArray();
 
         // Create a map of userId to user data (without password)
         const userMap = {};
-        users.forEach(user => {
+        users.forEach((user) => {
             const { password, ...userWithoutPassword } = user;
             userMap[user._id.toString()] = {
                 ...userWithoutPassword,
-                _id: user._id.toString()
+                _id: user._id.toString(),
             };
         });
 
         // Add user data to each match
-        const matchesWithUsers = bestMatches.map(match => ({
+        const matchesWithUsers = bestMatches.map((match) => ({
             user: userMap[match.form.userId] || null,
             form: match.form,
-            distance: match.distance
+            distance: match.distance,
         }));
 
         const matchBatchCollection = db.collection("match_batch");
@@ -83,31 +102,33 @@ export async function POST(req) {
             target: target,
             targetId: id,
             bestMatches: matchesWithUsers,
-            createdAt: new Date()
+            createdAt: new Date(),
         });
 
         console.log({
             target: target,
             targetId: id,
             bestMatches: matchesWithUsers,
-            createdAt: new Date()
-        })
+            createdAt: new Date(),
+        });
         console.log("Match batch inserted");
 
-        return new NextResponse(JSON.stringify(
-            {
+        return new NextResponse(
+            JSON.stringify({
                 success: true,
-                matches: matchesWithUsers.map(match => ({
+                matches: matchesWithUsers.map((match) => ({
                     user: match.user,
                     ...match.form,
                     matchScore: match.distance,
-                }))
-            }), {
-            status: 200,
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
+                })),
+            }),
+            {
+                status: 200,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
     } catch(err) {
         console.error(err);
 
@@ -135,11 +156,7 @@ export async function GET(req) {
             }), { status: 400 });
         }
 
-        console.log("targetId: ", target)
-
         const matchBatch = await db.collection("match_batch").findOne({ targetId: target.trim() });
-
-        console.log("matchBatch: ", matchBatch)
 
         return new NextResponse(
             JSON.stringify({

@@ -47,8 +47,6 @@ export async function GET(req) {
             );
         }
 
-        console.log("userId: ", userId);
-
         // Find all forms for the user, sorted by course
         const forms = await db
             .collection("form")
