@@ -1,6 +1,7 @@
 import clientPromise from "@/lib/db";
 import { NextResponse } from "next/server";
 import formDataToVector from "@/utils/formDataToVector";
+import { ObjectId } from "mongodb";
 
 export async function POST(req) {
     const getDistance = function (inputVector, candidateVector) {
@@ -19,7 +20,6 @@ export async function POST(req) {
     }
 
     const target = await req.json();
-    console.log()
 
     try {
         const {
@@ -45,6 +45,7 @@ export async function POST(req) {
         const client = await clientPromise;
         const db = client.db("studi");
         const formCollection = db.collection("form");
+        const userCollection = db.collection("user");
 
         const formsFromSameClass = await formCollection.find({course: course}).toArray();
 
@@ -53,21 +54,42 @@ export async function POST(req) {
             vector: formDataToVector(form)
         }));
 
-        // change n to however many matches you want to return
+        // Get best matches
         const bestMatches = getBestNMatches(inputVector, candidateVectors, 10);
+
+        // Fetch user data for each match
+        const userIds = bestMatches.map(match => new ObjectId(match.form.userId));
+        const users = await userCollection.find({ _id: { $in: userIds } }).toArray();
+
+        // Create a map of userId to user data (without password)
+        const userMap = {};
+        users.forEach(user => {
+            const { password, ...userWithoutPassword } = user;
+            userMap[user._id.toString()] = {
+                ...userWithoutPassword,
+                _id: user._id.toString()
+            };
+        });
+
+        // Add user data to each match
+        const matchesWithUsers = bestMatches.map(match => ({
+            user: userMap[match.form.userId] || null,
+            form: match.form,
+            distance: match.distance
+        }));
 
         const matchBatchCollection = db.collection("match_batch");
         await matchBatchCollection.insertOne({
             target: target,
             targetId: id,
-            bestMatches: bestMatches,
+            bestMatches: matchesWithUsers,
             createdAt: new Date()
         });
 
         console.log({
             target: target,
             targetId: id,
-            bestMatches: bestMatches,
+            bestMatches: matchesWithUsers,
             createdAt: new Date()
         })
         console.log("Match batch inserted");
@@ -75,7 +97,8 @@ export async function POST(req) {
         return new NextResponse(JSON.stringify(
             {
                 success: true,
-                matches: bestMatches.map(match => ({
+                matches: matchesWithUsers.map(match => ({
+                    user: match.user,
                     ...match.form,
                     matchScore: match.distance,
                 }))
