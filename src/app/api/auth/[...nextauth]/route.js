@@ -15,7 +15,7 @@ const handler = NextAuth({
                     console.log("Checking credentials for:", credentials.email);
 
                     const client = await clientPromise;
-                    const db = client.db();
+                    const db = client.db("studi");
 
                     // Find user by email
                     const user = await db.collection("user").findOne({ email: credentials.email });
