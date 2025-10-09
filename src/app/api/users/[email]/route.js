@@ -25,7 +25,7 @@ import clientPromise from "@/lib/db";
 // GET user by email
 export async function GET(req, { params }) {
     try {
-        const email = params.email; // destructure email from params
+        const email = await params.email; // destructure email from params
         const client = await clientPromise;
         const db = client.db();
 

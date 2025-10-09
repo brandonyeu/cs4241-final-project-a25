@@ -7,7 +7,7 @@ export async function POST(req) {
     if (!username || !password) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
 
     const client = await clientPromise;
-    const db = client.db();
+    const db = client.db("studi");
 
     const existing = await db.collection("user").findOne({ username });
     if (existing) return NextResponse.json({ error: "User already exists" }, { status: 400 });
