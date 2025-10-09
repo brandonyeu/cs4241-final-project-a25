@@ -27,7 +27,7 @@ export async function GET(req, { params }) {
     try {
         const email = await params.email; // destructure email from params
         const client = await clientPromise;
-        const db = client.db();
+        const db = client.db("studi");
 
         const user = await db.collection("user").findOne({ email });
 
