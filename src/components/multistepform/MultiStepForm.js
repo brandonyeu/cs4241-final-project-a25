@@ -69,15 +69,8 @@ export default function MultiStepForm() {
             body: JSON.stringify(formData),
         });
 
-        /*
-        example match batch request (move this to the dashboard page, but have responseData persist from this page to dashboard)
-         */
-        const matchBatch = await fetch(`api/matches?targetForm=${responseData.id}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        });
-
         if (response.ok) {
+            router.push("/");
             alert("Form submitted successfully!");
         } else {
             const errorData = await response.json();

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/utils/theme";
 import {
@@ -18,27 +19,78 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import MatchCard from "@/components/matchCard/matchCard";
 
 export default function Dashboard() {
+    const { data: session, status } = useSession();
     const [openCourse, setOpenCourse] = useState(null);
     const [selectedForm, setSelectedForm] = useState(null);
+    const [userForms, setUserForms] = useState({});
+    const [userData, setUserData] = useState(null);
+    const [currentMatches, setCurrentMatches] = useState([]);
 
-    const userForms = {
-        CS1101: [
-            { _id: "form1", course: "CS1101" },
-            { _id: "form2", course: "CS1101" },
-        ],
-        CS2102: [{ _id: "form3", course: "CS2102" }],
-        CS3733: [{ _id: "form4", course: "CS3733" }],
+    useEffect(() => {
+        if (!session?.user?.email) return;
+
+        const fetchUser = async () => {
+            try {
+                const res = await fetch(`/api/users/${session.user.email}`);
+                const data = await res.json();
+
+                if (!data._id) {
+                    setError("User data not found");
+                    return;
+                }
+
+                setUserData(data);
+                localStorage.setItem("userId", data._id);
+            } catch (err) {
+                console.error("Error fetching user data:", err);
+            }
+        };
+        fetchUser();
+    }, [session]);
+
+    useEffect(() => {
+        if (!userData?._id) return;
+
+        const fetchForms = async () => {
+            try {
+                // Fetch forms for this user
+                const formsResponse = await fetch(
+                    `/api/form?userId=${userData._id}`
+                );
+                const formsData = await formsResponse.json();
+
+                if (formsData.success) {
+                    setUserForms(formsData.forms);
+                } else {
+                    console.error("Failed to load forms");
+                }
+            } catch (err) {
+                console.error("Error fetching forms:", err);
+            }
+        };
+        fetchForms();
+    }, [userData]);
+
+    // Fetch matches when a form is selected
+    const handleFormClick = async (form) => {
+        setSelectedForm(form);
+        setCurrentMatches([]);
+
+        try {
+            const response = await fetch(`/api/matches?targetForm=${form._id}`);
+            const data = await response.json();
+
+            if (data.success && data.matchBatch?.bestMatches) {
+                setCurrentMatches(data.matchBatch.bestMatches);
+                console.log("currentMatches: ", currentMatches);
+            }
+        } catch (err) {
+            console.error("Error fetching matches:", err);
+        }
     };
-
-    const mockMatches = [
-        { id: "u1", name: "Alice" },
-        { id: "u2", name: "Bob" },
-        { id: "u3", name: "Charlie" },
-    ];
 
     const handleCourseClick = (course) =>
         setOpenCourse(openCourse === course ? null : course);
-    const handleFormClick = (form) => setSelectedForm(form);
 
     return (
         <ThemeProvider theme={theme}>
@@ -75,7 +127,7 @@ export default function Dashboard() {
 
                     <List component="nav">
                         {Object.entries(userForms).map(([course, forms]) => (
-                            <Box key={course} sx={{ mb: 3 }}>
+                            <Box key={course} sx={{ mb: 2 }}>
                                 <ListItemButton
                                     onClick={() => handleCourseClick(course)}
                                     sx={{
@@ -121,7 +173,7 @@ export default function Dashboard() {
                                                 key={form._id}
                                                 sx={{
                                                     pl: 5,
-                                                    mb: 1.5,
+                                                    my: 1,
                                                     borderRadius: 2,
                                                     backgroundColor:
                                                         selectedForm?._id ===
@@ -180,7 +232,7 @@ export default function Dashboard() {
                             }}
                         >
                             <Typography variant="h6">
-                                Select a course and one of your submissions to
+                                Select a course and one of your forms to
                                 see matches
                             </Typography>
                         </Paper>
@@ -196,28 +248,24 @@ export default function Dashboard() {
                                     mb: 1,
                                 }}
                             >
-                                🎯 Your Personalized Study Buddy Matches
-                            </Typography>
-                            <Typography
-                                variant="body1"
-                                sx={{ color: "#555", mb: 4 }}
-                            >
-                                Pick your favorite match and start studying 💪📚
+                                Study Buddy Matches
                             </Typography>
 
-                            <Grid container spacing={3}>
-                                {mockMatches.map((user) => (
-                                    <Grid
-                                        item
-                                        xs={12}
-                                        sm={6}
-                                        md={4}
-                                        key={user.id}
-                                    >
-                                        <MatchCard user={user} />
-                                    </Grid>
-                                ))}
-                            </Grid>
+                            {currentMatches.length === 0 ? (
+                                <Typography color="text.secondary">
+                                    No matches found
+                                </Typography>
+                            ) : (
+                                <Box display="flex" flexWrap="wrap" gap={2}>
+                                    {currentMatches.map((match) => (
+                                        <MatchCard
+                                            key={match.form._id}
+                                            match={match}
+                                        />
+                                    ))}
+                                </Box>
+                            )}
+       
                         </Box>
                     )}
                 </Box>

@@ -50,7 +50,7 @@ const formatLabel = (value) => {
 };
 
 export default function MatchCard({ match }) {
-    const { user, form } = match;
+    const { user, form, distance } = match;
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleClick = () => {
