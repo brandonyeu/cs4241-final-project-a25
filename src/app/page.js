@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import MatchCard from "@/components/matchCard/matchCard";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
     const { data: session, status } = useSession();
@@ -25,6 +26,11 @@ export default function Dashboard() {
     const [userForms, setUserForms] = useState({});
     const [userData, setUserData] = useState(null);
     const [currentMatches, setCurrentMatches] = useState([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (status === "unauthenticated") router.push("/login");
+    }, [status, router]);
 
     useEffect(() => {
         if (!session?.user?.email) return;
@@ -109,9 +115,8 @@ export default function Dashboard() {
                     sx={{
                         flex: "0 0 35%",
                         backgroundColor: "#ffffff",
-                        borderRight: `1px solid ${
-                            theme.palette.divider || "#ddd"
-                        }`,
+                        borderRight: `1px solid ${theme.palette.divider || "#ddd"
+                            }`,
                         p: 3,
                         overflowY: "auto",
                     }}
@@ -177,7 +182,7 @@ export default function Dashboard() {
                                                     borderRadius: 2,
                                                     backgroundColor:
                                                         selectedForm?._id ===
-                                                        form._id
+                                                            form._id
                                                             ? "#bbf0d7"
                                                             : "#f9f9f9",
                                                     "&:hover": {
