@@ -10,8 +10,6 @@ export default function Navbar() {
                 <Link href="/">
                     <img src="logo.png" alt="Logo" width="160" height="20" />
                 </Link>
-                <Link href="/matches" className="hover:underline hover:opacity-80">My Buddies</Link>
-                <Link href="/messages" className="hover:underline hover:opacity-80">Messages</Link>
             </div>
 
             <div className="flex items-center space-x-4">

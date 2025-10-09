@@ -65,16 +65,16 @@ You can use any web-based frameworks or tools available, but for your server pro
 
 # Studi
 ## Team Members (Group 5):
-- Arianna Xie
 - Amanda Chavarria Pleitez
+- Arianna Xie
 - Brandon Yeu
 - Charles Anton Sibal
 
 ## Project Description:
-This is a study buddy matching app that matches students looking for a study buddy based on classes, subjects, schedules, study habits, and other preferences. When users create an account, they record some static info (contact info, personal info, etc.). When they go to a spot “looking for a study buddy” they can fill out a form that records their course info, schedule, and study preferences. In the backend, there will be logic to find weighted euclidean distance to determine good fits for the user. The application then shows the top 3 best matches and their contact information for the student. Some ideas for the preference form are listed below:
+This is a study buddy matching app that matches students looking for a study buddy based on classes, subjects, schedules, study habits, and other preferences. When users create an account, they record some static info (contact info, personal info, etc.). When they go to a spot “looking for a study buddy” they can fill out a form that records their course info, schedule, and study preferences. In the backend, there will be logic to find weighted euclidean distance to determine good fits for the user. The application then shows the top 6 best matches and their contact information for the student. Some ideas for the preference form are listed below:
 
 ### Basic Info:
-- Name / username
+- Name
 - Email
 - Major / year
 - Language
@@ -100,8 +100,23 @@ This is a study buddy matching app that matches students looking for a study bud
 ## Key Technologies:
 - React
 - MongoDB
-- Node.js
-- Bootstrap
-- Shadcn
+- Next.js
+- MaterialUI: We used MaterialUI for components in the preference form (like the progress stepper, cards for the option cards, select for the course dropdown, and buttons). We also used it to make/style the match card component and home page.
 - JavaScript
-- Passport
+- Auth0
+
+## Challenges
+
+
+## Group Memeber Responsibilities
+### Amanda Chavarria Pleitez
+
+### Arianna Xie
+I created the initial Figma design idea for the application and developed the front-end of the preference form. I also developed the front-end of the match cards and updated the back-end API and home page to render the forms (sorted by course) the user created on the home page. I also updated the back-end API and home page to render the match cards of the best matches when a form is selected.
+
+### Brandon Yeu
+
+### Charles Anton Sibal
+
+
+### Accessibility Features
