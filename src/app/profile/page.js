@@ -53,8 +53,8 @@ export default function ProfilePage() {
 
                 <button
                     onClick={() => signOut({ callbackUrl: "/login" })}
-                    className="mt-6 py-2 px-4 rounded text-white font-semibold hover:opacity-80"
-                    style={{ backgroundImage: "linear-gradient(to right, #59EE80, #56E9F1)" }}
+                    className="mt-6 py-2 px-4 rounded font-semibold hover:opacity-80"
+                    style={{ backgroundImage: "linear-gradient(to right, #59EE80, #56E9F1)", color: "black" }}
                 >
                     Sign Out
                 </button>
