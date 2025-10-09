@@ -106,10 +106,19 @@ This is a study buddy matching app that matches students looking for a study bud
 - Auth0
 
 ## Challenges
+- Getting the users' forms and corresponding matches from the MongoDB and feeding it to our home page
+- Building an algorithm to find the top six most suitable matches
+- Figuring out how to build the MultiStepForm using MUI components
+- Figuring out how to structure and query the database so that it has all the necessary information we need for the match cards
+- How to structure the matchbatch collection in the database to easily get the info needed for the match cards / homepage
+- Encountered a small issue with logging in due to database confusions
 
 
-## Group Memeber Responsibilities
+
+## Group Member Responsibilities
+
 ### Amanda Chavarria Pleitez
+I designed and developed the front-end for the login, signup, and homepage of the application. I implemented the mapFormToVector function, which prepares user form data for use in the Euclidean distance algorithm for matching study buddies. Additionally, I contributed to writing the README and conducted accessibility testing using Google Lighthouse, providing an analysis of the results and recommendations for improvements.
 
 ### Arianna Xie
 I created the initial Figma design idea for the application and developed the front-end of the preference form. I also developed the front-end of the match cards and updated the back-end API and home page to render the forms (sorted by course) the user created on the home page. I also updated the back-end API and home page to render the match cards of the best matches when a form is selected.
@@ -120,3 +129,19 @@ I created the initial Figma design idea for the application and developed the fr
 
 
 ### Accessibility Features
+
+Google Lighthouse Accessibility Scores Per Page
+- Signup: 98 
+- Login: 98
+- Dashboard: 96
+- Preference Form: 96
+- Profile: 96
+
+Accessibility features:
+- Color Contrast: All text and UI elements meet sufficient contrast ratios for readability.
+- Touchable Areas: Buttons and interactive elements are large enough for easy tapping.
+- Clear Language: Text is written simply and clearly, avoiding jargon or confusing phrasing.
+- Consistent Layout: Predictable and consistent layout helps users orient themselves.
+- Feedback: Clear and descriptive error/success messages guide users when input is incorrect/correct.
+- Accessible Forms: Forms have labels, clear instructions, and proper focus order.
+
