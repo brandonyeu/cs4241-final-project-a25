@@ -27,7 +27,7 @@ export default function Login() {
         if (result?.error) {
             alert("Invalid Username or Password");
         } else {
-            router.push("/profile");
+            router.push("/");
         }
     };
 
