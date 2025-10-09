@@ -64,6 +64,8 @@ You can use any web-based frameworks or tools available, but for your server pro
 ------------------------------------------------------------------------------------
 
 # Studi
+Deployment: https://studi-u46a.onrender.com 
+
 ## Team Members (Group 5):
 - Amanda Chavarria Pleitez
 - Arianna Xie
@@ -71,7 +73,7 @@ You can use any web-based frameworks or tools available, but for your server pro
 - Charles Anton Sibal
 
 ## Project Description:
-This is a study buddy matching app that matches students looking for a study buddy based on classes, subjects, schedules, study habits, and other preferences. When users create an account, they record some static info (contact info, personal info, etc.). When they go to a spot “looking for a study buddy” they can fill out a form that records their course info, schedule, and study preferences. In the backend, there will be logic to find weighted euclidean distance to determine good fits for the user. The application then shows the top 6 best matches and their contact information for the student. Some ideas for the preference form are listed below:
+Studi is a study buddy matching app that matches students looking for a study buddy based on classes, subjects, schedules, study habits, and other preferences. When users create an account, they record some static info (contact info, personal info, etc.). When they “look for a study buddy,” they can fill out a form that records their course info, schedule, and study preferences. In the backend, there is logic that vectorizes the user's form information to find weighted euclidean distance to determine best fits for the user to partner with. The application then shows the top 6 best matches, their contact information, and their form selections for the student. Some information used for the preference form are listed below:
 
 ### Basic Info:
 - Name
@@ -99,11 +101,13 @@ This is a study buddy matching app that matches students looking for a study bud
 
 ## Key Technologies:
 - React
-- MongoDB
+- MongoDB Atlas
 - Next.js
 - MaterialUI: We used MaterialUI for components in the preference form (like the progress stepper, cards for the option cards, select for the course dropdown, and buttons). We also used it to make/style the match card component and home page.
 - JavaScript
-- Auth0
+- NextAuth
+- bcryptjs
+- Render
 
 ## Challenges
 - Getting the users' forms and corresponding matches from the MongoDB and feeding it to our home page
@@ -112,6 +116,7 @@ This is a study buddy matching app that matches students looking for a study bud
 - Figuring out how to structure and query the database so that it has all the necessary information we need for the match cards
 - How to structure the matchbatch collection in the database to easily get the info needed for the match cards / homepage
 - Encountered a small issue with logging in due to database confusions
+- Authentication methods caused errors in
 
 
 
@@ -123,6 +128,7 @@ I designed and developed the front-end for the login, signup, and homepage of th
 I created the initial Figma design idea for the application and developed the front-end of the preference form. I also developed the front-end of the match cards and created the back-end GET route for the form and updated the home page to render the forms (sorted by course) the user created on the home page. I also updated the back-end API and home page to render the match cards of the best matches when a form is selected. Additionally, using the lighthouse accessibility score, I improved the accessibility of our project by making changes, like adding aria labels to links, to maximize the accessibility scores. I contributed to writing the project description, key technologies, and challenges in the README.
 
 ### Brandon Yeu
+I contributed to the Figma design, layout, and user flow of our application. I set up the project with our initial specifications. I implemented authentication using NextAuth, which handles user and account information both client-side and server-side. This user information is used throughout the app, to make sure that users are on correct pages that they have access to and is key to the functionality of the app. I connected the form, login, signup, and profile pages to the backend by writing API calls for all of them. I created initial login and signup pages for testing which were developed into our final pages. I created the profile page to allow our development team to see if user information was being passed to and from the database correctly. I handled merge conflicts to output our final product, and handled deployment. I contributed to the project description, key technologies, and challenges in the README.
 
 ### Charles Anton Sibal
 

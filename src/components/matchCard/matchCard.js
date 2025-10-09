@@ -126,7 +126,7 @@ export default function MatchCard({ match }) {
                                 color="text.secondary"
                                 gutterBottom
                             >
-                                Class of {user.graduationYear}
+                                Class of {user.gradYear}
                             </Typography>
                             <Typography variant="body1" color="text.secondary">
                                 Language: {user.preferredLanguage}
@@ -244,97 +244,97 @@ export default function MatchCard({ match }) {
                             {(form.communicationStyle ||
                                 form.noiseLevel ||
                                 form.isOnline != null) && (
-                                <Grid item xs={12}>
-                                    <Typography
-                                        variant="body2"
-                                        fontWeight="bold"
-                                        gutterBottom
-                                    >
-                                        Study Environment
-                                    </Typography>
-                                    <Stack
-                                        direction="row"
-                                        sx={{ flexWrap: "wrap", gap: 1 }}
-                                    >
-                                        {form.communicationStyle && (
-                                            <Chip
-                                                label={`Style: ${formatLabel(
-                                                    form.communicationStyle
-                                                )}`}
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                        {form.noiseLevel && (
-                                            <Chip
-                                                label={`Noise: ${formatLabel(
-                                                    form.noiseLevel
-                                                )}`}
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                        {form.isOnline != null && (
-                                            <Chip
-                                                label={
-                                                    form.isOnline
-                                                        ? "Online"
-                                                        : "In-Person"
-                                                }
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                    </Stack>
-                                </Grid>
-                            )}
+                                    <Grid item xs={12}>
+                                        <Typography
+                                            variant="body2"
+                                            fontWeight="bold"
+                                            gutterBottom
+                                        >
+                                            Study Environment
+                                        </Typography>
+                                        <Stack
+                                            direction="row"
+                                            sx={{ flexWrap: "wrap", gap: 1 }}
+                                        >
+                                            {form.communicationStyle && (
+                                                <Chip
+                                                    label={`Style: ${formatLabel(
+                                                        form.communicationStyle
+                                                    )}`}
+                                                    variant="outlined"
+                                                    size="small"
+                                                />
+                                            )}
+                                            {form.noiseLevel && (
+                                                <Chip
+                                                    label={`Noise: ${formatLabel(
+                                                        form.noiseLevel
+                                                    )}`}
+                                                    variant="outlined"
+                                                    size="small"
+                                                />
+                                            )}
+                                            {form.isOnline != null && (
+                                                <Chip
+                                                    label={
+                                                        form.isOnline
+                                                            ? "Online"
+                                                            : "In-Person"
+                                                    }
+                                                    variant="outlined"
+                                                    size="small"
+                                                />
+                                            )}
+                                        </Stack>
+                                    </Grid>
+                                )}
 
                             {/* Study Rhythm */}
                             {(form.timeOfDay ||
                                 form.studyPace ||
                                 form.breakStyle) && (
-                                <Grid item xs={12}>
-                                    <Typography
-                                        variant="body2"
-                                        fontWeight="bold"
-                                        gutterBottom
-                                    >
-                                        Study Rhythm
-                                    </Typography>
-                                    <Stack
-                                        direction="row"
-                                        sx={{ flexWrap: "wrap", gap: 1 }}
-                                    >
-                                        {form.timeOfDay && (
-                                            <Chip
-                                                label={`Time: ${formatLabel(
-                                                    form.timeOfDay
-                                                )}`}
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                        {form.studyPace && (
-                                            <Chip
-                                                label={`Pace: ${formatLabel(
-                                                    form.studyPace
-                                                )}`}
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                        {form.breakStyle && (
-                                            <Chip
-                                                label={`Break: ${formatLabel(
-                                                    form.breakStyle
-                                                )}`}
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                    </Stack>
-                                </Grid>
-                            )}
+                                    <Grid item xs={12}>
+                                        <Typography
+                                            variant="body2"
+                                            fontWeight="bold"
+                                            gutterBottom
+                                        >
+                                            Study Rhythm
+                                        </Typography>
+                                        <Stack
+                                            direction="row"
+                                            sx={{ flexWrap: "wrap", gap: 1 }}
+                                        >
+                                            {form.timeOfDay && (
+                                                <Chip
+                                                    label={`Time: ${formatLabel(
+                                                        form.timeOfDay
+                                                    )}`}
+                                                    variant="outlined"
+                                                    size="small"
+                                                />
+                                            )}
+                                            {form.studyPace && (
+                                                <Chip
+                                                    label={`Pace: ${formatLabel(
+                                                        form.studyPace
+                                                    )}`}
+                                                    variant="outlined"
+                                                    size="small"
+                                                />
+                                            )}
+                                            {form.breakStyle && (
+                                                <Chip
+                                                    label={`Break: ${formatLabel(
+                                                        form.breakStyle
+                                                    )}`}
+                                                    variant="outlined"
+                                                    size="small"
+                                                />
+                                            )}
+                                        </Stack>
+                                    </Grid>
+                                )}
                         </Grid>
 
                         <Typography
