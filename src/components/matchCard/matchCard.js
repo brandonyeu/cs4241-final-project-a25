@@ -49,12 +49,17 @@ const formatLabel = (value) => {
     return labelMap[value] || value;
 };
 
-export default function MatchCard({ match }) {
+export default function MatchCard({ match, targetForm }) {
     const { user, form, distance } = match;
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleClick = () => {
         setIsFlipped(!isFlipped);
+    };
+
+    const getChipColor = (fieldName, value) => {
+        if (!targetForm) return "default";
+        return targetForm[fieldName] === value ? "success" : "error";
     };
 
     return (
@@ -197,6 +202,10 @@ export default function MatchCard({ match }) {
                                             label={formatLabel(
                                                 form.personality
                                             )}
+                                            color={getChipColor(
+                                                "personality",
+                                                form.personality
+                                            )}
                                             variant="outlined"
                                             size="small"
                                         />
@@ -223,6 +232,10 @@ export default function MatchCard({ match }) {
                                                 label={`Priority: ${formatLabel(
                                                     form.priority
                                                 )}`}
+                                                color={getChipColor(
+                                                    "priority",
+                                                    form.priority
+                                                )}
                                                 variant="outlined"
                                                 size="small"
                                             />
@@ -232,6 +245,10 @@ export default function MatchCard({ match }) {
                                                 label={`Assignment: ${formatLabel(
                                                     form.assignment
                                                 )}`}
+                                                color={getChipColor(
+                                                    "assignment",
+                                                    form.assignment
+                                                )}
                                                 variant="outlined"
                                                 size="small"
                                             />
@@ -244,97 +261,121 @@ export default function MatchCard({ match }) {
                             {(form.communicationStyle ||
                                 form.noiseLevel ||
                                 form.isOnline != null) && (
-                                    <Grid item xs={12}>
-                                        <Typography
-                                            variant="body2"
-                                            fontWeight="bold"
-                                            gutterBottom
-                                        >
-                                            Study Environment
-                                        </Typography>
-                                        <Stack
-                                            direction="row"
-                                            sx={{ flexWrap: "wrap", gap: 1 }}
-                                        >
-                                            {form.communicationStyle && (
-                                                <Chip
-                                                    label={`Style: ${formatLabel(
-                                                        form.communicationStyle
-                                                    )}`}
-                                                    variant="outlined"
-                                                    size="small"
-                                                />
-                                            )}
-                                            {form.noiseLevel && (
-                                                <Chip
-                                                    label={`Noise: ${formatLabel(
-                                                        form.noiseLevel
-                                                    )}`}
-                                                    variant="outlined"
-                                                    size="small"
-                                                />
-                                            )}
-                                            {form.isOnline != null && (
-                                                <Chip
-                                                    label={
-                                                        form.isOnline
-                                                            ? "Online"
-                                                            : "In-Person"
-                                                    }
-                                                    variant="outlined"
-                                                    size="small"
-                                                />
-                                            )}
-                                        </Stack>
-                                    </Grid>
-                                )}
+                                <Grid item xs={12}>
+                                    <Typography
+                                        variant="body2"
+                                        fontWeight="bold"
+                                        gutterBottom
+                                    >
+                                        Study Environment
+                                    </Typography>
+                                    <Stack
+                                        direction="row"
+                                        sx={{ flexWrap: "wrap", gap: 1 }}
+                                    >
+                                        {form.communicationStyle && (
+                                            <Chip
+                                                label={`Style: ${formatLabel(
+                                                    form.communicationStyle
+                                                )}`}
+                                                color={getChipColor(
+                                                    "communicationStyle",
+                                                    form.communicationStyle
+                                                )}
+                                                variant="outlined"
+                                                size="small"
+                                            />
+                                        )}
+                                        {form.noiseLevel && (
+                                            <Chip
+                                                label={`Noise: ${formatLabel(
+                                                    form.noiseLevel
+                                                )}`}
+                                                color={getChipColor(
+                                                    "noiseLevel",
+                                                    form.noiseLevel
+                                                )}
+                                                variant="outlined"
+                                                size="small"
+                                            />
+                                        )}
+                                        {form.isOnline != null && (
+                                            <Chip
+                                                label={
+                                                    form.isOnline
+                                                        ? "Online"
+                                                        : "In-Person"
+                                                }
+                                                color={getChipColor(
+                                                    "isOnline",
+                                                    form.isOnline
+                                                )}
+                                                variant="outlined"
+                                                size="small"
+                                            />
+                                        )}
+                                    </Stack>
+                                </Grid>
+                            )}
 
                             {/* Study Rhythm */}
                             {(form.timeOfDay ||
                                 form.studyPace ||
                                 form.breakStyle) && (
-                                    <Grid item xs={12}>
-                                        <Typography
-                                            variant="body2"
-                                            fontWeight="bold"
-                                            gutterBottom
-                                        >
-                                            Study Rhythm
-                                        </Typography>
-                                        <Stack
-                                            direction="row"
-                                            sx={{ flexWrap: "wrap", gap: 1 }}
-                                        >
-                                            {form.timeOfDay && (
-                                                <Chip
-                                                    label={`Time: ${formatLabel(
-                                                        form.timeOfDay
-                                                    )}`}
-                                                    variant="outlined"
-                                                    size="small"
-                                                />
-                                            )}
-                                            {form.studyPace && (
-                                                <Chip
-                                                    label={`Pace: ${formatLabel(
-                                                        form.studyPace
-                                                    )}`}
-                                                    variant="outlined"
-                                                    size="small"
-                                                />
-                                            )}
-                                            {form.breakStyle && (
-                                                <Chip
-                                                    label={`Break: ${formatLabel(
-                                                        form.breakStyle
-                                                    )}`}
-                                                    variant="outlined"
-                                                    size="small"
-                                                />
-                                            )}
-                                        </Stack>
-                                    </Grid>
-                                )}
+                                <Grid item xs={12}>
+                                    <Typography
+                                        variant="body2"
+                                        fontWeight="bold"
+                                        gutterBottom
+                                    >
+                                        Study Rhythm
+                                    </Typography>
+                                    <Stack
+                                        direction="row"
+                                        sx={{ flexWrap: "wrap", gap: 1 }}
+                                    >
+                                        {form.timeOfDay && (
+                                            <Chip
+                                                label={`Time: ${formatLabel(
+                                                    form.timeOfDay
+                                                )}`}
+                                                color={getChipColor(
+                                                    "timeOfDay",
+                                                    form.timeOfDay
+                                                )}
+                                                variant="outlined"
+                                                size="small"
+                                            />
+                                        )}
+                                        {form.studyPace && (
+                                            <Chip
+                                                label={`Pace: ${formatLabel(
+                                                    form.studyPace
+                                                )}`}
+                                                color={getChipColor(
+                                                    "studyPace",
+                                                    form.studyPace
+                                                )}
+                                                variant="outlined"
+                                                size="small"
+                                            />
+                                        )}
+                                        {form.breakStyle && (
+                                            <Chip
+                                                label={`Break: ${formatLabel(
+                                                    form.breakStyle
+                                                )}`}
+                                                color={getChipColor(
+                                                    "breakStyle",
+                                                    form.breakStyle
+                                                )}
+                                                variant="outlined"
+                                                size="small"
+                                            />
+                                        )}
+                                    </Stack>
+                                </Grid>
+                            )}
                         </Grid>
 
                         <Typography

@@ -265,6 +265,7 @@ export default function Dashboard() {
                                         <MatchCard
                                             key={match.form._id}
                                             match={match}
+                                            targetForm={selectedForm}
                                         />
                                     ))}
                                 </Box>
