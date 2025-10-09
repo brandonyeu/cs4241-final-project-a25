@@ -72,6 +72,16 @@ export async function POST(req) {
         })
         console.log("Match batch inserted");
 
+        const body = {
+            success: true,
+            matches: bestMatches.map(match => ({
+                ...match.form,
+                matchScore: match.distance,
+            }))
+        };
+
+        console.log("body", body);
+
         return new NextResponse(JSON.stringify(
             {
                 success: true,
@@ -136,5 +146,18 @@ export async function GET(req) {
                 "Content-Type": "application/json",
             },
         })
+    }
+}
+
+export async function DELETE(req) {
+    try {
+        const client = await clientPromise;
+        const db = client.db("studi");
+
+        const collection = db.collection("match_batch");
+        collection.deleteMany({})
+        return NextResponse.json({ message: "Match batches deleted successfully" });
+    } catch(err) {
+        console.error(err);
     }
 }

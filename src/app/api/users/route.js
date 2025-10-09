@@ -43,3 +43,16 @@ export async function POST(request) {
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
+
+export async function DELETE(req) {
+    try {
+        const client = await clientPromise;
+        const db = client.db("studi");
+        const collection = db.collection("user");
+
+        await collection.deleteMany({});
+        return NextResponse.json({ message: "Users deleted successfully" });
+    } catch(err) {
+        console.error(err);
+    }
+}

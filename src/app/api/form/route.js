@@ -33,3 +33,16 @@ export async function GET() {
     // Optional: implement fetching forms if needed
     return NextResponse.json({ message: "GET not implemented" });
 }
+
+export async function DELETE() {
+    try {
+        const client = await clientPromise;
+        const db = client.db("studi");
+        const collection = db.collection("form");
+
+        await collection.deleteMany({});
+        return NextResponse.json({ message: "Forms deleted successfully" });
+    } catch (err) {
+        console.error(err);
+    }
+}
