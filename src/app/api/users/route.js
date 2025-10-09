@@ -4,7 +4,7 @@ import clientPromise from "@/lib/db";
 export async function POST(request) {
     try {
         const client = await clientPromise;
-        const db = client.db();
+        const db = client.db("studi");
         const body = await request.json();
 
         const { name, email, major, gradYear, preferredLanguage, password, confirmPassword } = body;
