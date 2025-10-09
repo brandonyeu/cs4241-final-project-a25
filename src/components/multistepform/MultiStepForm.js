@@ -133,7 +133,11 @@ export default function MultiStepForm() {
 
                 {/* display submit button only if on last step */}
                 {activeStep != steps.length - 1 ? (
-                    <Button variant="contained" onClick={handleNext}>
+                    <Button
+                        variant="contained"
+                        disabled={!formData.course && activeStep !== 0}
+                        onClick={handleNext}
+                    >
                         Next
                     </Button>
                 ) : (

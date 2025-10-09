@@ -116,12 +116,11 @@ This is a study buddy matching app that matches students looking for a study bud
 
 
 ## Group Member Responsibilities
-
 ### Amanda Chavarria Pleitez
 I designed and developed the front-end for the login, signup, and homepage of the application. I implemented the mapFormToVector function, which prepares user form data for use in the Euclidean distance algorithm for matching study buddies. Additionally, I contributed to writing the README and conducted accessibility testing using Google Lighthouse, providing an analysis of the results and recommendations for improvements.
 
 ### Arianna Xie
-I created the initial Figma design idea for the application and developed the front-end of the preference form. I also developed the front-end of the match cards and updated the back-end API and home page to render the forms (sorted by course) the user created on the home page. I also updated the back-end API and home page to render the match cards of the best matches when a form is selected.
+I created the initial Figma design idea for the application and developed the front-end of the preference form. I also developed the front-end of the match cards and created the back-end GET route for the form and updated the home page to render the forms (sorted by course) the user created on the home page. I also updated the back-end API and home page to render the match cards of the best matches when a form is selected. Additionally, using the lighthouse accessibility score, I improved the accessibility of our project by making changes, like adding aria labels to links, to maximize the accessibility scores. I contributed to writing the project description, key technologies, and challenges in the README.
 
 ### Brandon Yeu
 
@@ -133,15 +132,15 @@ I created the initial Figma design idea for the application and developed the fr
 Google Lighthouse Accessibility Scores Per Page
 - Signup: 98 
 - Login: 98
-- Dashboard: 96
-- Preference Form: 96
-- Profile: 96
+- Dashboard: 100
+- Preference Form: 100
+- Profile: 100
 
 Accessibility features:
 - Color Contrast: All text and UI elements meet sufficient contrast ratios for readability.
 - Touchable Areas: Buttons and interactive elements are large enough for easy tapping.
 - Clear Language: Text is written simply and clearly, avoiding jargon or confusing phrasing.
 - Consistent Layout: Predictable and consistent layout helps users orient themselves.
-- Feedback: Clear and descriptive error/success messages guide users when input is incorrect/correct.
+- Feedback: Clear and descriptive error/success messages guide users when input is incorrect/correct. Adding loading signs to keep users informed on page state.
 - Accessible Forms: Forms have labels, clear instructions, and proper focus order.
 

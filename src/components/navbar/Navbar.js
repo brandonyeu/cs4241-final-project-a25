@@ -17,13 +17,18 @@ export default function Navbar() {
                     href="/form"
                     className="py-2 px-4 rounded hover:underline hover:opacity-80"
                     style={{
-                        backgroundImage: 'linear-gradient(to right, #59EE80, #56E9F1)'
+                        backgroundImage:
+                            "linear-gradient(to right, #59EE80, #56E9F1)",
                     }}
                 >
                     Find a Study Buddy
                 </Link>
 
-                <Link href="/profile" className="hover:opacity-80">
+                <Link
+                    href="/profile"
+                    aria-label="Go to Profile"
+                    className="hover:opacity-80"
+                >
                     <UserCircleIcon className="h-8 w-8" />
                 </Link>
             </div>
