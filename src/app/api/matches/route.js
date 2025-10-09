@@ -18,8 +18,23 @@ export async function POST(req) {
         return sortedMatches.slice(0, n);
     }
 
+    const target = await req.json();
+    console.log()
+
     try {
-        const {course, personality, priority, assignment, communicationStyle, noiseLevel, isOnline, timeOfDay, studyPace, breakStyle} = await req.json();
+        const {
+            course,
+            personality,
+            priority,
+            assignment,
+            communicationStyle,
+            noiseLevel,
+            isOnline,
+            timeOfDay,
+            studyPace,
+            breakStyle,
+            id,
+        } = target;
 
         const inputVector = formDataToVector({
             course, personality, priority, assignment,
@@ -29,9 +44,9 @@ export async function POST(req) {
 
         const client = await clientPromise;
         const db = client.db("studi");
-        const collection = db.collection("form");
+        const formCollection = db.collection("form");
 
-        const formsFromSameClass = await collection.find({course: course}).toArray();
+        const formsFromSameClass = await formCollection.find({course: course}).toArray();
 
         const candidateVectors = formsFromSameClass.map(form => ({
             form: form,
@@ -39,9 +54,23 @@ export async function POST(req) {
         }));
 
         // change n to however many matches you want to return
-        const bestMatches = getBestNMatches(inputVector, candidateVectors, 5);
+        const bestMatches = getBestNMatches(inputVector, candidateVectors, 10);
 
-        console.log("Best matches:", bestMatches);
+        const matchBatchCollection = db.collection("match_batch");
+        await matchBatchCollection.insertOne({
+            target: target,
+            targetId: id,
+            bestMatches: bestMatches,
+            createdAt: new Date()
+        });
+
+        console.log({
+            target: target,
+            targetId: id,
+            bestMatches: bestMatches,
+            createdAt: new Date()
+        })
+        console.log("Match batch inserted");
 
         return new NextResponse(JSON.stringify(
             {
@@ -56,6 +85,48 @@ export async function POST(req) {
                 "Content-Type": "application/json",
             },
         })
+    } catch(err) {
+        console.error(err);
+
+        return new NextResponse(JSON.stringify({success: false}), {
+            status: 500,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+    }
+}
+
+export async function GET(req) {
+    try {
+        const client = await clientPromise;
+        const db = client.db("studi");
+
+        const { searchParams } = new URL(req.url);
+        const target = searchParams.get('targetForm');
+
+        if (!target) {
+            return new NextResponse(JSON.stringify({
+                success: false,
+                error: "Target parameter required"
+            }), { status: 400 });
+        }
+
+        console.log("targetId: ", target)
+
+        const matchBatch = await db.collection("match_batch").findOne({ targetId: target.trim() });
+
+        console.log("matchBatch: ", matchBatch)
+
+        return new NextResponse(
+            JSON.stringify({
+                success: true,
+                matchBatch: matchBatch,
+            }), {
+                status: 200,
+                headers: { "Content-Type": "application/json" },
+            }
+        );
     } catch(err) {
         console.error(err);
 
