@@ -232,8 +232,12 @@ export default function Dashboard() {
                             }}
                         >
                             <Typography variant="h6">
-                                Select a course and one of your forms to
-                                see matches
+                                To get started, fill out the "Find a Study
+                                Buddy" preference form.
+                            </Typography>
+                            <Typography variant="h6">
+                                Then, select a course
+                                and one of your forms to see matches.
                             </Typography>
                         </Paper>
                     ) : (
@@ -265,7 +269,6 @@ export default function Dashboard() {
                                     ))}
                                 </Box>
                             )}
-       
                         </Box>
                     )}
                 </Box>
