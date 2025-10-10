@@ -100,14 +100,14 @@ Studi is a study buddy matching app that matches students looking for a study bu
 - Break style: short frequent breaks / long breaks / few breaks
 
 ## Key Technologies:
-- React
-- MongoDB Atlas
-- Next.js
+- React: For the front-end state management and routing of the application
+- MongoDB Atlas: For data persistence between users and sessions
+- Next.js: For server-side rendering of the application
 - MaterialUI: We used MaterialUI for components in the preference form (like the progress stepper, cards for the option cards, select for the course dropdown, and buttons). We also used it to make/style the match card component and home page.
 - JavaScript
-- NextAuth
-- bcryptjs
-- Render
+- NextAuth: For user signup/login and session authentication
+- bcryptjs: For hashing passwords
+- Render: For deployment
 
 ## Challenges
 - Getting the users' forms and corresponding matches from the MongoDB and feeding it to our home page
